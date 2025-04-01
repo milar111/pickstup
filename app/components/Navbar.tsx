@@ -30,7 +30,7 @@ export function Navbar() {
             <ThemeToggle />
           </div>
 
-          <div className="flex md:hidden items-center">
+          <div className="flex items-center md:hidden">
             <ThemeToggle />
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -60,29 +60,31 @@ export function Navbar() {
           </div>
         </div>
 
-        <div className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden pb-4`}>
-          <div className="flex flex-col space-y-4 pt-4">
-            <Link
-              href="/"
-              className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors px-2 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-white/10"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Home
-            </Link>
-            <Link
-              href="/components"
-              className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors px-2 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-white/10"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Components
-            </Link>
-            <Link
-              href="/docs"
-              className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors px-2 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-white/10"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Documentation
-            </Link>
+        <div className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden absolute left-0 right-0 top-16 bg-white dark:bg-black border-b border-gray-200/50 dark:border-white/10`}>
+          <div className="px-4 sm:px-6 lg:px-8 py-4">
+            <div className="flex flex-col space-y-4">
+              <Link
+                href="/"
+                className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors px-2 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-white/10"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Home
+              </Link>
+              <Link
+                href="/components"
+                className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors px-2 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-white/10"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Components
+              </Link>
+              <Link
+                href="/docs"
+                className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors px-2 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-white/10"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Documentation
+              </Link>
+            </div>
           </div>
         </div>
       </div>
