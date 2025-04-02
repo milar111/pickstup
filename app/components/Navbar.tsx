@@ -21,7 +21,7 @@ export function Navbar() {
             <Link href="/" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
               Home
             </Link>
-            <Link href="/components" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
+            <Link href="/ui-components" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
               Components
             </Link>
             <Link href="/docs" className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
@@ -71,7 +71,7 @@ export function Navbar() {
                 Home
               </Link>
               <Link
-                href="/components"
+                href="/ui-components"
                 className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors px-2 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-white/10"
                 onClick={() => setIsMenuOpen(false)}
               >

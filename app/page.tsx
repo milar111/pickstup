@@ -55,7 +55,7 @@ export default function Home() {
         ))}
       </div>
 
-      <div className="max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8 py-20 relative">
+      <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 py-20 relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 text-center lg:text-left">
             <div className="relative">
@@ -74,7 +74,7 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link
-                href="/components"
+                href="/ui-components"
                 className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-500 dark:to-purple-500 text-white rounded-full overflow-hidden transition-all duration-300 text-center"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-500 dark:to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
