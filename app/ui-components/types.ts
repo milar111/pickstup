@@ -12,6 +12,7 @@ export interface ComponentVariant {
   description: string;
   previewCode?: string; 
   code?: string; 
+  codePath?: string; // Path to the folder containing code examples for this variant
 }
 
 export interface ComponentGroup {
