@@ -11,21 +11,23 @@ interface VariantCardProps {
 }
 
 export default function VariantCard({ variant, componentData, groupData }: VariantCardProps) {
+  const href = `/ui-components/${componentData.name.toLowerCase().replace(/\s+/g, '-')}?variant=${variant.id}`;
+  
   return (
     <Link
-      href={`/ui-components/${componentData.name.toLowerCase().replace(/\s+/g, '-')}?variant=${variant.id}`}
+      href={href}
       className="group relative p-6 bg-gray-50/80 dark:bg-white/5 backdrop-blur-sm rounded-2xl border border-gray-300/50 dark:border-white/10 hover:border-gray-400/50 dark:hover:border-white/20 transition-all duration-300"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       <div className="relative">
-        <div className="p-4 h-32 flex items-center justify-center">
+        <div className="p-4 h-40 flex items-center justify-center bg-white dark:bg-gray-900/50 rounded-lg overflow-hidden">
           <VariantPreview 
             variant={variant} 
             componentData={componentData} 
             groupData={groupData} 
           />
         </div>
-        <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
+        <div className="pt-4 mt-4 border-t border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="font-medium text-gray-900 dark:text-white">{variant.name}</h3>

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Component } from '../../types';
 import { componentGroups } from '../../../ui-components/data';
+import { getComponentPreviewHTML } from '../helpers/fileLoader';
 
 interface VariantPreviewProps {
   variant: any;
@@ -9,7 +10,49 @@ interface VariantPreviewProps {
 }
 
 export default function VariantPreview({ variant, componentData, groupData }: VariantPreviewProps) {
+  const [previewHtml, setPreviewHtml] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  
+  useEffect(() => {
+    const loadPreview = async () => {
+      if (!variant || !componentData) {
+        setIsLoading(false);
+        return;
+      }
+      
+      try {
+        // Get preview HTML from the API
+        const html = await getComponentPreviewHTML(componentData.name, variant.id);
+        setPreviewHtml(html);
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error loading variant preview:', error);
+        setIsLoading(false);
+      }
+    };
+    
+    loadPreview();
+  }, [variant, componentData]);
+  
   if (!groupData || !componentData) return null;
+  
+  // Return loading state
+  if (isLoading) {
+    return (
+      <div className="animate-pulse w-full h-full flex items-center justify-center">
+        <div className="w-3/4 h-12 bg-gray-200 dark:bg-gray-700 rounded"></div>
+      </div>
+    );
+  }
+  
+  if (previewHtml) {
+    return (
+      <div 
+        className="w-full h-full flex items-center justify-center" 
+        dangerouslySetInnerHTML={{ __html: previewHtml }}
+      />
+    );
+  }
   
   const group = componentGroups.find(g => g.title === groupData.title);
   if (!group) return null;

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 import { Component } from '../../ui-components/types';
 import { getIconComponent } from '../../ui-components/utils/icons';
 import { componentGroups } from '../../ui-components/data';
+import { getComponentPreviewHTML } from '../../components/ui-components/helpers/fileLoader';
 
 interface ComponentCardProps {
   component: Component & { 
@@ -16,6 +17,38 @@ interface ComponentCardProps {
 export function ComponentCard({ component }: ComponentCardProps) {
   const IconComponent = getIconComponent(component.groupIcon);
   const group = componentGroups.find(g => g.title === component.groupTitle);
+  const [previewHtml, setPreviewHtml] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  
+  // Get the first variant for preview
+  useEffect(() => {
+    const loadPreview = async () => {
+      try {
+        // Find group and get first variant of the component
+        const group = componentGroups.find(g => g.title === component.groupTitle);
+        if (!group || !group.variants || !group.variants[component.name]) {
+          setIsLoading(false);
+          return;
+        }
+        
+        const firstVariant = group.variants[component.name][0];
+        if (!firstVariant) {
+          setIsLoading(false);
+          return;
+        }
+        
+        // Get preview HTML
+        const html = await getComponentPreviewHTML(component.name, firstVariant.id);
+        setPreviewHtml(html);
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error loading component preview:', error);
+        setIsLoading(false);
+      }
+    };
+    
+    loadPreview();
+  }, [component]);
   
   return (
     <Link
@@ -24,8 +57,19 @@ export function ComponentCard({ component }: ComponentCardProps) {
     >
       <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 dark:from-blue-500/10 dark:to-purple-500/10 rounded-xl opacity-100 dark:opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       <div className="relative">
-        <div className="component-preview h-36 mb-4 flex items-center justify-center bg-white dark:bg-gray-900/50 rounded-lg border border-gray-200 dark:border-gray-800">
-          {renderComponentPreview(component)}
+        <div className="component-preview h-36 mb-4 flex items-center justify-center bg-white dark:bg-gray-900/50 rounded-lg border border-gray-200 dark:border-gray-800 p-4 overflow-hidden">
+          {isLoading ? (
+            <div className="animate-pulse flex items-center justify-center w-full h-full">
+              <div className="w-3/4 h-12 bg-gray-200 dark:bg-gray-700 rounded"></div>
+            </div>
+          ) : previewHtml ? (
+            <div 
+              className="w-full h-full flex items-center justify-center" 
+              dangerouslySetInnerHTML={{ __html: previewHtml }}
+            />
+          ) : (
+            renderComponentPreview(component)
+          )}
         </div>
         
         <div className="flex items-center justify-between">

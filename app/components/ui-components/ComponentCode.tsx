@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Copy, Check } from 'lucide-react';
 import { Component } from '../types';
 import { getComponentCode } from './helpers/codeUtils';
@@ -11,25 +11,48 @@ interface ComponentCodeProps {
 
 export default function ComponentCode({ component, componentGroup, selectedVariant }: ComponentCodeProps) {
   const [copied, setCopied] = useState(false);
+  const [code, setCode] = useState('');
+
+  useEffect(() => {
+    setCode(getComponentCode(component, componentGroup, selectedVariant));
+  }, [component, componentGroup, selectedVariant]);
+
+  useEffect(() => {
+    const handleCodeLoaded = (event: any) => {
+      const { componentName, variantName, code: loadedCode } = event.detail;
+      
+      const pathParts = (component.name || '').split('/');
+      const currentComponentName = pathParts[pathParts.length - 1];
+      
+      if (
+        currentComponentName.toLowerCase() === componentName.toLowerCase() && 
+        selectedVariant === variantName
+      ) {
+        setCode(loadedCode);
+      }
+    };
+    
+    window.addEventListener('component-code-loaded', handleCodeLoaded);
+    
+    return () => {
+      window.removeEventListener('component-code-loaded', handleCodeLoaded);
+    };
+  }, [component, selectedVariant]);
 
   const handleCopyCode = () => {
-    if (component) {
-      const componentCode = getComponentCode(component, componentGroup, selectedVariant);
-      
-      navigator.clipboard.writeText(componentCode);
-      setCopied(true);
-      
-      setTimeout(() => {
-        setCopied(false);
-      }, 2000);
-    }
+    navigator.clipboard.writeText(code);
+    setCopied(true);
+    
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000);
   };
 
   return (
     <div className="mb-12 component-detail-code">
       <div className="relative">
         <pre className="p-4 bg-gray-50 dark:bg-gray-900 rounded-xl overflow-x-auto text-sm text-gray-800 dark:text-gray-300">
-          <code>{getComponentCode(component, componentGroup, selectedVariant)}</code>
+          <code>{code}</code>
         </pre>
         
         <div className="absolute top-2 right-2">
