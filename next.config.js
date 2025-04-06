@@ -4,6 +4,7 @@ const nextConfig = {
     // Disable ESLint during production builds
     ignoreDuringBuilds: true,
   },
+  output: 'export',
 }
 
 module.exports = nextConfig 
