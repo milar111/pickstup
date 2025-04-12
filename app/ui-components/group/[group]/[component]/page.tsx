@@ -1,14 +1,6 @@
-'use client';
-
-import React, { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
 import { componentGroups } from '../../../data';
+import ComponentGroupClient from './ComponentGroupClient';
 import { Component } from '../../../types';
-
-import PageBackground from '../../../../components/ui-components/common/PageBackground';
-import LoadingSkeleton from '../../../../components/ui-components/common/LoadingSkeleton';
-import GroupHeader from '../../../../components/ui-components/group/GroupHeader';
-import VariantGrid from '../../../../components/ui-components/group/VariantGrid';
 
 interface GroupData {
   title: string;
@@ -16,54 +8,65 @@ interface GroupData {
   components: Component[];
 }
 
-export default function ComponentGroupPage() {
-  const params = useParams();
-  const router = useRouter();
-  const group = decodeURIComponent(params.group as string);
-  const componentName = decodeURIComponent(params.component as string);
+interface PageParams {
+  group: string;
+  component: string;
+}
+
+export function generateStaticParams() {
+  const params: PageParams[] = [];
   
-  const [groupData, setGroupData] = useState<GroupData | null>(null);
-  const [componentData, setComponentData] = useState<Component | null>(null);
+  for (const group of componentGroups) {
+    const groupSlug = group.title.toLowerCase().replace(/ /g, '-');
+    
+    for (const component of group.components) {
+      const componentSlug = component.name.toLowerCase().replace(/ /g, '-');
+      params.push({
+        group: groupSlug,
+        component: componentSlug
+      });
+    }
+  }
   
-  useEffect(() => {
-    const formattedGroup = group.replace(/-/g, ' ');
-    const matchedGroup = componentGroups.find(g => 
-      g.title.toLowerCase() === formattedGroup
+  return params;
+}
+
+interface PageProps {
+  params: PageParams;
+}
+
+export default async function ComponentGroupPage({ params }: PageProps) {
+  const resolvedParams = await Promise.resolve(params);
+  const group = decodeURIComponent(resolvedParams.group);
+  const componentName = decodeURIComponent(resolvedParams.component);
+  
+  const formattedGroup = group.replace(/-/g, ' ');
+  const matchedGroup = componentGroups.find(g => 
+    g.title.toLowerCase() === formattedGroup.toLowerCase()
+  );
+  
+  let groupData: GroupData | null = null;
+  let componentData: Component | null = null;
+  
+  if (matchedGroup) {
+    groupData = matchedGroup as GroupData;
+    
+    const formattedComponent = componentName.replace(/-/g, ' ');
+    const matchedComponent = matchedGroup.components.find(c => 
+      c.name.toLowerCase() === formattedComponent.toLowerCase()
     );
     
-    if (matchedGroup) {
-      setGroupData(matchedGroup as GroupData);
-      
-      const formattedComponent = componentName.replace(/-/g, ' ');
-      const matchedComponent = matchedGroup.components.find(c => 
-        c.name.toLowerCase() === formattedComponent
-      );
-      
-      if (matchedComponent) {
-        setComponentData(matchedComponent);
-      } else {
-        router.push('/ui-components');
-      }
-    } else {
-      router.push('/ui-components');
+    if (matchedComponent) {
+      componentData = matchedComponent;
     }
-  }, [group, componentName, router]);
-
-  if (!groupData || !componentData) {
-    return <LoadingSkeleton />;
   }
-
+  
   return (
-    <PageBackground>
-      <GroupHeader 
-        componentData={componentData} 
-        groupTitle={groupData.title} 
-      />
-      
-      <VariantGrid 
-        componentData={componentData} 
-        groupData={groupData} 
-      />
-    </PageBackground>
+    <ComponentGroupClient 
+      groupData={groupData}
+      componentData={componentData}
+      group={group}
+      componentName={componentName}
+    />
   );
 } 
