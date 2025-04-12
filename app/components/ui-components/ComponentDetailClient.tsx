@@ -10,7 +10,6 @@ import ComponentHeader from './ComponentHeader';
 import ComponentTabs from './ComponentTabs';
 import ComponentPreview from './ComponentPreview';
 import ComponentCode from './ComponentCode';
-import ComponentActions from './ComponentActions';
 import ComponentProps from './ComponentProps';
 import ComponentUsage from './ComponentUsage';
 import ComponentCustomization from './ComponentCustomization';
@@ -53,11 +52,6 @@ export default function ComponentDetailClient({
     <PageBackground>
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <ComponentHeader 
-          component={component} 
-          componentGroup={componentGroup} 
-          selectedVariant={selectedVariant} 
-        />
-        <ComponentActions 
           component={component} 
           componentGroup={componentGroup} 
           selectedVariant={selectedVariant} 

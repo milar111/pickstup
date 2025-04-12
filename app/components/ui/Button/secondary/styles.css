@@ -1,0 +1,18 @@
+.button-secondary {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  background-color: #e5e7eb;
+  color: #1f2937;
+  border: none;
+  cursor: pointer;
+}
+
+.button-secondary:hover {
+  background-color: #d1d5db;
+}
+
+.button-secondary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+} 

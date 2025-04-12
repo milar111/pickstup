@@ -1,151 +1,157 @@
 import { NextRequest, NextResponse } from 'next/server';
-import * as fs from 'fs';
-import * as path from 'path';
+import fs from 'fs';
+import path from 'path';
+
+type CodeFormat = 'typescript' | 'jsx' | 'css';
 
 export const dynamic = "force-static";
 export const revalidate = false;
 
 export async function GET(request: NextRequest) {
-  try {
-    const { searchParams } = new URL(request.url);
-    const componentName = searchParams.get('component');
-    const variantName = searchParams.get('variant');
-    
-    if (!componentName || !variantName) {
-      return NextResponse.json({ error: 'Component and variant parameters are required' }, { status: 400 });
-    }
-    
-    const filePath = path.join(process.cwd(), 'app', 'components', 'ui', componentName, variantName, 'index.tsx');
-    
-    if (!fs.existsSync(filePath)) {
-      return NextResponse.json({ error: `Component file not found: ${filePath}` }, { status: 404 });
-    }
-    
-    const fileContent = fs.readFileSync(filePath, 'utf8');
-    
-    let independentCode = '';
-    
-    if (componentName === 'Button') {
-      independentCode = `import React from 'react';
+  const searchParams = request.nextUrl.searchParams;
+  const component = searchParams.get('component');
+  const variant = searchParams.get('variant');
+  const format = (searchParams.get('format') || 'typescript') as CodeFormat;
 
-interface ${capitalize(variantName)}ButtonProps {
-  children: React.ReactNode;
-  onClick?: () => void;
-  disabled?: boolean;
-  className?: string;
+  if (!component || !variant) {
+    return NextResponse.json(
+      { error: 'Component and variant are required parameters' },
+      { status: 400 }
+    );
+  }
+
+  try {
+    const baseDir = path.join(process.cwd(), 'app', 'components', 'ui', component, variant);
+    
+    const files = fs.readdirSync(baseDir);
+    let filePath = '';
+    
+    switch (format) {
+      case 'typescript':
+        const tsxFile = files.find(file => file.endsWith('.tsx'));
+        if (tsxFile) {
+          filePath = path.join(baseDir, tsxFile);
+        }
+        break;
+      case 'jsx':
+        const jsxFile = files.find(file => file.endsWith('.jsx'));
+        if (jsxFile) {
+          filePath = path.join(baseDir, jsxFile);
+        }
+        break;
+      case 'css':
+        const cssFile = files.find(file => file.endsWith('.css'));
+        if (cssFile) {
+          filePath = path.join(baseDir, cssFile);
+        }
+        break;
+      default:
+        return NextResponse.json(
+          { error: `Invalid format: ${format}` },
+          { status: 400 }
+        );
+    }
+
+    if (filePath && fs.existsSync(filePath)) {
+      const code = fs.readFileSync(filePath, 'utf8');
+      return NextResponse.json({ code });
+    }
+    
+    let backupFilePath = '';
+    
+    switch (format) {
+      case 'typescript':
+        backupFilePath = path.join(baseDir, 'typescript', 'index.tsx');
+        break;
+      case 'jsx':
+        backupFilePath = path.join(baseDir, 'javascript', 'index.jsx');
+        break;
+      case 'css':
+        backupFilePath = path.join(baseDir, 'css', 'styles.css');
+        break;
+    }
+    
+    if (backupFilePath && fs.existsSync(backupFilePath)) {
+      const code = fs.readFileSync(backupFilePath, 'utf8');
+      return NextResponse.json({ code });
+    }
+
+    return NextResponse.json(
+      { 
+        error: `No ${format} file found for ${component}/${variant}`,
+        code: getFallbackCode(component, variant, format)  
+      },
+      { status: 404 }
+    );
+  } catch (error) {
+    console.error('Error serving component code:', error);
+    return NextResponse.json(
+      { error: 'Error serving component code' },
+      { status: 500 }
+    );
+  }
 }
 
-const ${capitalize(variantName)}Button = ({
+function getFallbackCode(component: string, variant: string, format: CodeFormat): string {
+  switch (format) {
+    case 'typescript':
+      return `import React from 'react';
+
+interface ${component}Props {
+  children: React.ReactNode;
+  className?: string;
+  // Add other props as needed
+}
+
+const ${component} = ({
   children,
-  onClick,
-  disabled = false,
   className = '',
-}: ${capitalize(variantName)}ButtonProps) => {
+  ...props
+}: ${component}Props) => {
+  // Component implementation
   return (
     <button 
-      className={\`px-4 py-2 rounded font-medium \${className}\`}
-      onClick={onClick}
-      disabled={disabled}
-      type="button"
+      className={\`default-${component.toLowerCase()}-${variant} \${className}\`}
+      {...props}
     >
       {children}
     </button>
   );
 };
 
-export default ${capitalize(variantName)}Button;`;
-    } else if (componentName === 'Input') {
-      if (variantName === 'default') {
-        independentCode = `import React from 'react';
+export default ${component};`;
 
-interface DefaultInputProps {
-  placeholder?: string;
-  value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  disabled?: boolean;
-  className?: string;
-  type?: string;
-}
+    case 'jsx':
+      return `import React from 'react';
 
-const DefaultInput = ({
-  placeholder = 'Enter text...',
-  value,
-  onChange,
-  disabled = false,
+const ${component} = ({
+  children,
   className = '',
-  type = 'text'
-}: DefaultInputProps) => {
+  ...props
+}) => {
+  // Component implementation
   return (
-    <input 
-      type={type}
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
-      disabled={disabled}
-      className={\`px-3 py-2 border border-gray-300 rounded w-full \${disabled ? 'opacity-60 cursor-not-allowed' : ''} \${className}\`}
-    />
+    <button 
+      className={\`default-${component.toLowerCase()}-${variant} \${className}\`}
+      {...props}
+    >
+      {children}
+    </button>
   );
 };
 
-export default DefaultInput;`;
-      } else if (variantName === 'with-label') {
-        independentCode = `import React from 'react';
+export default ${component};`;
 
-interface InputWithLabelProps {
-  label: string;
-  id: string;
-  placeholder?: string;
-  value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  disabled?: boolean;
-  className?: string;
-  type?: string;
-}
+    case 'css':
+      return `.${component.toLowerCase()}-${variant} {
+  /* Default styles */
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+}`;
 
-const InputWithLabel = ({
-  label,
-  id,
-  placeholder = 'Enter text...',
-  value,
-  onChange,
-  disabled = false,
-  className = '',
-  type = 'text'
-}: InputWithLabelProps) => {
-  return (
-    <div className="space-y-2">
-      <label 
-        htmlFor={id}
-        className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-      >
-        {label}
-      </label>
-      <input
-        id={id}
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        disabled={disabled}
-        className={\`px-3 py-2 border border-gray-300 rounded w-full \${disabled ? 'opacity-60 cursor-not-allowed' : ''} \${className}\`}
-      />
-    </div>
-  );
-};
-
-export default InputWithLabel;`;
-      }
-    } else {
-      independentCode = fileContent;
-    }
-    
-    return NextResponse.json({ 
-      code: fileContent,
-      independentCode: independentCode
-    });
-  } catch (error) {
-    console.error('Error reading component file:', error);
-    return NextResponse.json({ error: 'Failed to read component file' }, { status: 500 });
+    default:
+      return `// No sample code available for ${format} format`;
   }
 }
 

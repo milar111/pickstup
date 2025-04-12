@@ -1,16 +1,5 @@
 import React from 'react';
 
-interface InputWithLabelProps {
-  label: string;
-  id: string;
-  placeholder?: string;
-  value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  disabled?: boolean;
-  className?: string;
-  type?: string;
-}
-
 const InputWithLabel = ({
   label,
   id,
@@ -20,7 +9,7 @@ const InputWithLabel = ({
   disabled = false,
   className = '',
   type = 'text'
-}: InputWithLabelProps) => {
+}) => {
   return (
     <div className="space-y-2">
       <label 
