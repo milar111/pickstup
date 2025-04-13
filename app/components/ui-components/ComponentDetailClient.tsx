@@ -44,6 +44,15 @@ export default function ComponentDetailClient({
     }
   }, [component, componentGroup, router, searchParams]);
   
+  const handleVariantChange = (variant: string) => {
+    setSelectedVariant(variant);
+    
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('variant', variant);
+    
+    router.push(`/ui-components/${slug}?${params.toString()}`, { scroll: false });
+  };
+  
   if (!component) {
     return <LoadingSkeleton />;
   }
@@ -64,7 +73,7 @@ export default function ComponentDetailClient({
         activeTab={activeTab} 
         selectedVariant={selectedVariant} 
         setActiveTab={setActiveTab} 
-        setSelectedVariant={setSelectedVariant} 
+        setSelectedVariant={handleVariantChange} 
       />
       
       {activeTab === 'preview' ? (
