@@ -1,0 +1,8 @@
+.gradient-button {
+  transition: all 0.3s ease;
+}
+
+.gradient-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.3);
+} 

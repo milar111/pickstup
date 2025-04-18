@@ -1,6 +1,6 @@
 import React from 'react';
 
-const OutlineButton = ({
+const MetallicButton = ({
   children,
   onClick,
   disabled = false,
@@ -9,9 +9,12 @@ const OutlineButton = ({
   return (
     <button 
       className={`px-4 py-2 rounded font-medium
-        bg-transparent border-2 border-blue-500 text-blue-500
-        hover:bg-blue-500 hover:text-white
-        transition-all duration-300
+        bg-gradient-to-b from-gray-300 to-gray-400
+        text-gray-800 border border-gray-500
+        hover:from-gray-400 hover:to-gray-500
+        active:from-gray-500 active:to-gray-600
+        shadow-md hover:shadow-lg
+        transition-all duration-200
         ${disabled ? 'opacity-60 cursor-not-allowed' : ''} ${className}`}
       onClick={onClick}
       disabled={disabled}
@@ -22,4 +25,4 @@ const OutlineButton = ({
   );
 };
 
-export default OutlineButton; 
+export default MetallicButton; 

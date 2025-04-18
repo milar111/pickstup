@@ -1,23 +1,25 @@
 import React from 'react';
 
-interface OutlineButtonProps {
+interface NatureButtonProps {
   children: React.ReactNode;
   onClick?: () => void;
   disabled?: boolean;
   className?: string;
 }
 
-const OutlineButton = ({
+const NatureButton = ({
   children,
   onClick,
   disabled = false,
   className = '',
-}: OutlineButtonProps) => {
+}: NatureButtonProps) => {
   return (
     <button 
-      className={`px-4 py-2 rounded font-medium
-        bg-transparent border-2 border-blue-500 text-blue-500
-        hover:bg-blue-500 hover:text-white
+      className={`px-4 py-2 rounded-full font-medium
+        bg-green-600 text-white
+        hover:bg-green-700
+        border-2 border-green-800
+        shadow-md hover:shadow-lg
         transition-all duration-300
         ${disabled ? 'opacity-60 cursor-not-allowed' : ''} ${className}`}
       onClick={onClick}
@@ -29,4 +31,4 @@ const OutlineButton = ({
   );
 };
 
-export default OutlineButton; 
+export default NatureButton; 

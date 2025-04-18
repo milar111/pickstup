@@ -1,6 +1,6 @@
 import React from 'react';
 
-const OutlineButton = ({
+const GlowButton = ({
   children,
   onClick,
   disabled = false,
@@ -8,9 +8,11 @@ const OutlineButton = ({
 }) => {
   return (
     <button 
-      className={`px-4 py-2 rounded font-medium
-        bg-transparent border-2 border-blue-500 text-blue-500
-        hover:bg-blue-500 hover:text-white
+      className={`px-4 py-2 rounded-full font-medium
+        bg-blue-500 text-white
+        hover:bg-blue-600
+        shadow-[0_0_15px_rgba(59,130,246,0.5)]
+        hover:shadow-[0_0_20px_rgba(59,130,246,0.7)]
         transition-all duration-300
         ${disabled ? 'opacity-60 cursor-not-allowed' : ''} ${className}`}
       onClick={onClick}
@@ -22,4 +24,4 @@ const OutlineButton = ({
   );
 };
 
-export default OutlineButton; 
+export default GlowButton; 

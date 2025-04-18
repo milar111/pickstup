@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Copy, Check, Download } from 'lucide-react';
 import { Component } from '../types';
 import { getComponentCode } from './helpers/codeUtils';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 interface ComponentCodeProps {
   component: Component;
@@ -12,9 +13,14 @@ interface ComponentCodeProps {
 type CodeFormat = 'typescript' | 'jsx' | 'css';
 
 export default function ComponentCode({ component, componentGroup, selectedVariant }: ComponentCodeProps) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [copied, setCopied] = useState(false);
   const [code, setCode] = useState('');
-  const [codeFormat, setCodeFormat] = useState<CodeFormat>('typescript');
+  const [codeFormat, setCodeFormat] = useState<CodeFormat>(() => {
+    const format = searchParams.get('format');
+    return (format === 'jsx' || format === 'css' || format === 'typescript') ? format : 'typescript';
+  });
 
   useEffect(() => {
     setCode(getComponentCode(component, componentGroup, selectedVariant, codeFormat));
@@ -65,23 +71,32 @@ export default function ComponentCode({ component, componentGroup, selectedVaria
     document.body.removeChild(element);
   };
 
+  const handleFormatChange = (format: CodeFormat) => {
+    setCodeFormat(format);
+    
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('format', format);
+    
+    router.push(`?${params.toString()}`, { scroll: false });
+  };
+
   return (
     <div className="mb-12 component-detail-code">
       <div className="mb-4 flex space-x-2">
         <button 
-          onClick={() => setCodeFormat('typescript')} 
+          onClick={() => handleFormatChange('typescript')} 
           className={`px-3 py-1.5 rounded text-sm ${codeFormat === 'typescript' ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'}`}
         >
           TypeScript
         </button>
         <button 
-          onClick={() => setCodeFormat('jsx')} 
+          onClick={() => handleFormatChange('jsx')} 
           className={`px-3 py-1.5 rounded text-sm ${codeFormat === 'jsx' ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'}`}
         >
           JSX
         </button>
         <button 
-          onClick={() => setCodeFormat('css')} 
+          onClick={() => handleFormatChange('css')} 
           className={`px-3 py-1.5 rounded text-sm ${codeFormat === 'css' ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'}`}
         >
           CSS

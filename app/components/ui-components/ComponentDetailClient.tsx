@@ -28,16 +28,26 @@ export default function ComponentDetailClient({
   const router = useRouter();
   const searchParams = useSearchParams();
   
-  const [activeTab, setActiveTab] = useState<'preview' | 'code'>('preview');
+  const [activeTab, setActiveTab] = useState<'preview' | 'code'>(() => {
+    const tab = searchParams.get('tab');
+    return tab === 'code' ? 'code' : 'preview';
+  });
   const [component, setComponent] = useState<Component | null>(initialComponent);
   const [componentGroup, setComponentGroup] = useState<string | null>(initialComponentGroup);
-  const [selectedVariant, setSelectedVariant] = useState<string>('default');
+  const [selectedVariant, setSelectedVariant] = useState<string>(() => {
+    const variant = searchParams.get('variant');
+    return variant || 'default';
+  });
   
   useEffect(() => {
     if (component && componentGroup) {
       const variant = searchParams.get('variant');
+      const tab = searchParams.get('tab');
       if (variant) {
         setSelectedVariant(variant);
+      }
+      if (tab === 'code') {
+        setActiveTab('code');
       }
     } else {
       router.push('/ui-components');
@@ -49,6 +59,15 @@ export default function ComponentDetailClient({
     
     const params = new URLSearchParams(searchParams.toString());
     params.set('variant', variant);
+    
+    router.push(`/ui-components/${slug}?${params.toString()}`, { scroll: false });
+  };
+  
+  const handleTabChange = (tab: 'preview' | 'code') => {
+    setActiveTab(tab);
+    
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('tab', tab);
     
     router.push(`/ui-components/${slug}?${params.toString()}`, { scroll: false });
   };
@@ -72,7 +91,7 @@ export default function ComponentDetailClient({
         componentGroup={componentGroup} 
         activeTab={activeTab} 
         selectedVariant={selectedVariant} 
-        setActiveTab={setActiveTab} 
+        setActiveTab={handleTabChange} 
         setSelectedVariant={handleVariantChange} 
       />
       

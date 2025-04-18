@@ -1,8 +1,8 @@
-.outline-button {
+.glow-button {
   transition: all 0.3s ease;
 }
 
-.outline-button:focus {
+.glow-button:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
 } 

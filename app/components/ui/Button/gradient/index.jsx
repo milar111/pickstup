@@ -1,6 +1,6 @@
 import React from 'react';
 
-const OutlineButton = ({
+const GradientButton = ({
   children,
   onClick,
   disabled = false,
@@ -8,9 +8,9 @@ const OutlineButton = ({
 }) => {
   return (
     <button 
-      className={`px-4 py-2 rounded font-medium
-        bg-transparent border-2 border-blue-500 text-blue-500
-        hover:bg-blue-500 hover:text-white
+      className={`px-4 py-2 rounded font-medium text-white
+        bg-gradient-to-r from-purple-500 via-pink-500 to-red-500
+        hover:from-purple-600 hover:via-pink-600 hover:to-red-600
         transition-all duration-300
         ${disabled ? 'opacity-60 cursor-not-allowed' : ''} ${className}`}
       onClick={onClick}
@@ -22,4 +22,4 @@ const OutlineButton = ({
   );
 };
 
-export default OutlineButton; 
+export default GradientButton; 

@@ -1,0 +1,8 @@
+.neon-button {
+  transition: all 0.3s ease;
+}
+
+.neon-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.3);
+} 

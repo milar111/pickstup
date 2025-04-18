@@ -1,0 +1,8 @@
+.futuristic-button {
+  transition: all 0.3s ease;
+}
+
+.futuristic-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(31, 41, 55, 0.3);
+} 

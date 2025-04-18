@@ -1,0 +1,8 @@
+.nature-button {
+  transition: all 0.3s ease;
+}
+
+.nature-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.3);
+} 

@@ -1,0 +1,6014 @@
+1.Glitch Effect
+Html: 
+<button class="btn glitch">
+  <span>Glitch Effect</span>
+</button>
+
+Css:
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a1a1a;
+  font-family: "Inter", sans-serif;
+}
+
+.btn {
+  position: relative;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background: none;
+  border: 2px solid #646cff;
+  border-radius: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.glitch {
+  text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+    -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+    0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+}
+
+.glitch:hover {
+  animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-4px, 4px);
+  }
+  40% {
+    transform: translate(-4px, -4px);
+  }
+  60% {
+    transform: translate(4px, 4px);
+  }
+  80% {
+    transform: translate(4px, -4px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+
+2. Liquid Fill
+Html: 
+<button class="btn liquid">
+  <span>Liquid Fill</span>
+</button>
+
+Css:
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a1a1a;
+  font-family: "Inter", sans-serif;
+}
+
+.btn {
+  position: relative;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background: none;
+  border: 2px solid #646cff;
+  border-radius: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.liquid {
+  background: linear-gradient(#646cff 0 0) no-repeat calc(200% - var(--p, 0%))
+    100% / 200% var(--p, 0.2em);
+  transition: 0.3s var(--t, 0s),
+    background-position 0.3s calc(0.3s - var(--t, 0s));
+}
+
+.liquid:hover {
+  --p: 100%;
+  --t: 0.3s;
+  color: #fff;
+}
+
+
+3.Matrix Rain
+
+Html:
+<button class="btn matrix">
+  <span>Matrix Rain</span>
+  <div class="code-rain"></div>
+</button>
+
+Css:
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0a0a0a;
+  font-family: "Inter", sans-serif;
+  perspective: 1000px;
+}
+
+.btn {
+  position: relative;
+  padding: 1.5rem 3rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.matrix {
+  background: #000;
+  border: 2px solid #0f0;
+  color: #0f0;
+}
+
+.code-rain {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 255, 0, 0) 0%,
+    rgba(0, 255, 0, 0.2) 50%,
+    rgba(0, 255, 0, 0) 100%
+  );
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.matrix:hover .code-rain {
+  opacity: 1;
+  animation: rain 1s linear infinite;
+}
+
+@keyframes rain {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+
+
+4.Magnetic
+Html:
+<button class="btn magnetic">
+            <span>Magnetic</span>
+            <div class="particles-field" id="particleField"></div>
+        </button>
+Css:
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0a0a0a;
+  font-family: 'Inter', sans-serif;
+  perspective: 1000px;
+  overflow-x: hidden;
+}
+
+.btn {
+  position: relative;
+  padding: 1.5rem 3rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  min-width: 200px;
+  z-index: 1;
+}
+
+
+/* Magnetic Field Button */
+.magnetic {
+  background: #2d2d2d;
+  border: none;
+  overflow: visible;
+}
+
+.particles-field {
+  position: absolute;
+  inset: -100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.magnetic:hover .particles-field {
+  opacity: 1;
+}
+
+@keyframes particleFloat {
+  0% { transform: translate(var(--x), var(--y)) scale(0); }
+  50% { transform: translate(calc(var(--x) * -1), calc(var(--y) * -1)) scale(1); }
+  100% { transform: translate(var(--x), var(--y)) scale(0); }
+}
+
+Js:
+const particleField = document.getElementById('particleField');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.setProperty('--x', `${Math.random() * 200 - 100}px`);
+            particle.style.setProperty('--y', `${Math.random() * 200 - 100}px`);
+            particle.style.animation = `particleFloat ${1 + Math.random() * 2}s infinite`;
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            particleField.appendChild(particle);
+        }
+
+5.3d button:
+Html:
+<a href="#">
+  <span>Button</span>
+  <span>Button</span>
+  <span>Button</span>
+  <span>Button</span>
+</a>
+
+Css:
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+a {
+  position: relative;
+  width: 150px;
+  height: 50px;
+  transition: 4s;
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateX(0deg);
+}
+a:hover {
+  transform: perspective(1000px) rotateX(360deg);
+}
+a span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  background: rgba(255, 255, 255, 0.9);
+  font-family: sans-serif;
+  text-transform: uppercase;
+  font-size: 22px;
+  letter-spacing: 2px;
+  transition: 0.5s;
+  border: 2px solid #000;
+  box-sizing: border-box;
+  box-shadow: insert 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+a:hover span {
+  color: #fff;
+  background: rgba(3, 169, 244, 0.8);
+}
+a span:nth-child(1) {
+  transform: rotateX(360deg) translateZ(25px);
+}
+a span:nth-child(2) {
+  transform: rotateX(270deg) translateZ(25px);
+}
+a span:nth-child(3) {
+  transform: rotateX(180deg) translateZ(25px);
+}
+a span:nth-child(4) {
+  transform: rotateX(90deg) translateZ(25px);
+}
+
+6.Flip Button:
+html:
+<a href="#" class="btn-flip" data-back="Back" data-front="Front"></a>
+Css:
+body{
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	position: relative;
+	background: #1e1e24;
+	align-items: center;
+	justify-content: center;
+}
+
+$speed: 0.5s;
+
+.btn-flip{
+	opacity: 1;
+	outline: 0;
+	color: #fff;
+	line-height: 40px;
+	position: relative;
+	text-align: center;
+	letter-spacing: 1px;
+	display: inline-block;
+	text-decoration: none;
+	font-family: 'Open Sans';
+	text-transform: uppercase;
+	
+	&:hover{
+		
+		&:after{
+			opacity: 1;
+			transform: translateY(0) rotateX(0);
+		}
+		
+		&:before{
+			opacity: 0;
+			transform: translateY(50%) rotateX(90deg);
+		}
+	}
+	
+	&:after{
+		top: 0;
+		left: 0;
+		opacity: 0;
+		width: 100%;
+		color: #323237;
+		display: block;
+		transition: $speed;
+		position: absolute;
+		background: #adadaf;
+		content: attr(data-back);
+		transform: translateY(-50%) rotateX(90deg);
+	}
+	
+	&:before{
+		top: 0;
+		left: 0;
+		opacity: 1;
+		color: #adadaf;
+		display: block;
+		padding: 0 30px;
+		line-height: 40px;
+		transition: $speed;
+		position: relative;
+		background: #323237;
+		content: attr(data-front);
+		transform: translateY(0) rotateX(0);
+	}
+}
+
+7. 3D css button
+Html:
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Made By A 12 Year Old Boy For His Favorite Youtuber Kevin Powell -->
+
+<head>
+  <meta charset="UTF-8">
+  <title>Kevin Powell is cool</title>
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+</head>
+
+<body>
+  <ul>
+    <li>
+      <a href="#" onclick="kevin()">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span class="fab fa-css3-alt"> </span>
+      </a>
+
+    </li>
+  </ul>
+</body>
+
+</html>
+
+Css:
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+
+ul {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+ul li {
+  position: relative;
+  list-style: none;
+  width: 60px;
+  height: 60px;
+  margin: 0 30px;
+  transform: rotate(-30deg) skew(25deg);
+}
+
+ul li span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: teal;
+  transition: 0.5s;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 30px !important;
+}
+
+ul li:hover span:nth-child(5) {
+  transform: translate(40px, -40px);
+  opacity: 1;
+}
+
+ul li:hover span:nth-child(4) {
+  transform: translate(30px, -30px);
+  opacity: 0.8;
+}
+
+ul li:hover span:nth-child(3) {
+  transform: translate(20px, -20px);
+  opacity: 0.6;
+}
+
+ul li:hover span:nth-child(2) {
+  transform: translate(10px, -10px);
+  opacity: 0.4;
+}
+
+ul li:hover span:nth-child(1) {
+  transform: translate(0, 0);
+  opacity: 0.2;
+}
+
+/* ul li:nth-child(1) span {
+    background: teal;
+}
+ */
+
+Js:
+function kevin() {
+  alert("Done With Pure CSS & A Font Awesome Icon");
+  let q = prompt("So How Many Stars Do U Give The 3d CSS Button");
+  if (q >= 3) {
+    alert("thank you so much, glad u liked it");
+  } else {
+    alert("thank you so much, I will Try My best To Make This Better");
+  }
+}
+8. Button Hover Animations
+Html:
+<div class="container">
+  <div class="category">
+    <div>
+      <h1>Shadow</h1>
+    </div>
+    <div class="buttons-wrapper">
+      <div><a class="click-btn btn-style1" href="#">Hover me</a></div>
+      <div><a class="click-btn btn-style2" href="#">Hover me</a></div>
+      <div><a class="click-btn btn-style3" href="#">Hover me</a></div>
+      <div><a class="click-btn btn-style4" href="#">Hover me</a></div>
+      <div><a class="click-btn btn-style5" href="#">Hover me</a></div>
+    </div>
+  </div>
+  <div class="category">
+    <div>
+      <h1>Background</h1>
+    </div>
+    <div class="buttons-wrapper">
+      <div><a class="click-btn btn-style500" href="#">Hover me</a></div>
+      <div><a class="click-btn btn-style501" href="#">Hover me</a></div>
+      <div><a class="click-btn btn-style502" href="#">Hover me</a></div>
+      <div><a class="click-btn btn-style503" href="#">Hover me</a></div>
+      <div><a class="click-btn btn-style504" href="#">Hover me</a></div>
+      <div><a class="click-btn btn-style505" href="#">Hover me</a></div>
+      <div><a class="click-btn btn-style506" href="#">Hover me</a></div>
+      <div><a class="click-btn btn-style507" href="#">Hover me</a></div>
+      <div><a class="click-btn btn-style508" href="#">Hover me</a></div>
+      <div><a class="click-btn btn-style509" href="#">Hover me</a></div>
+      <div><a class="click-btn btn-style510" href="#">Hover me</a></div>
+      <div><a class="click-btn btn-style511" href="#"><span>Hover me</span></a></div>
+    </div>
+  </div>
+
+  <div class="category">
+    <div>
+      <h1>Border</h1>
+    </div>
+    <div class="buttons-wrapper">
+      <div><a class="click-btn btn-style700" href="#">Hover me</a></div>
+      <div><a class="click-btn btn-style701" href="#"><span>Hover me</span></a></div>
+      <div><a class="click-btn btn-style702" href="#">Hover me</a></div>
+      <div><a class="click-btn btn-style703" href="#"><span>Hover me</span></a></div>
+    </div>
+  </div>
+
+  <div class="category">
+    <div>
+      <h1>Other</h1>
+    </div>
+    <div class="buttons-wrapper">
+      <div><a class="click-btn btn-style900" href="#" data-hover="Click me!">Hover me</a></div>
+      <div><a class="click-btn btn-style901" href="#">Hover me</a></div>
+      <div>
+        <a class="click-btn btn-style902" href="#">
+          <div class="block"><span></span></div>
+          <span data-name="hover">Hover</span>
+          <span data-name="me">me</span>
+        </a>
+      </div>
+      <div><a class="click-btn btn-style903" href="#">Hover me</a></div>
+      <div>
+        <a class="click-btn btn-style904" data-hover="Click me!" href="#">
+          <span>Hover me</span>
+        </a>
+      </div>
+      <div><a class="click-btn btn-style905" href="#">Hover me</a></div>
+      <div><a class="click-btn btn-style906" href="#" data-hover="Click me!">Hover me</a></div>
+    </div>
+  </div>
+</div>
+
+Scss:
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+
+$background: #fafbff;
+$button-width: 120px;
+$border-radius: 5px;
+
+html {
+  font-family: "Fredoka One", cursive;
+  background-color: $background;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: fixed;
+  flex-flow: column;
+  overflow:auto;
+  top: 0;
+  left: 0;
+  padding: 5px 20px;
+}
+
+h1 {
+  display: inline-block;
+  position: relative;
+  margin: 2.5rem 0.5rem 0.5rem 50px;
+  background: $background;
+  font-size: 1.68rem;
+  font-weight: bold;
+  padding: 0 10px;
+  &::before {
+    width: calc(100% + 80px);
+    height: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #000;
+    content: "";
+    z-index: -1;
+  }
+}
+
+.click-btn {
+  display: flex;
+  width: $button-width;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem;
+  line-height: 35px;
+  border: 1px solid;
+  border-radius: $border-radius;
+  text-align: center;
+  font-size: 16px;
+  color: #000;
+  text-decoration: none;
+  transition: all 0.35s;
+  box-sizing: border-box;
+}
+
+.buttons-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.updating {
+  margin: 3em;
+  text-align: center;
+}
+
+// button style
+
+.btn-style1 {
+  $btn-color: #979695;
+  $btn-hover-color: #5e5e5e;
+  position: relative;
+  border-color: $btn-color;
+  color: $btn-color;
+  &:hover {
+    transform: translateY(-0.25em);
+    border-color: $btn-hover-color;
+    color: $btn-hover-color;
+    &::before {
+      opacity: 1;
+    }
+  }
+  &::before {
+    width: 100%;
+    height: 1em;
+    position: absolute;
+    left: 0;
+    bottom: -1.35em;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(0, 0, 0, 0.35) 0%,
+      rgba(0, 0, 0, 0) 80%
+    );
+    opacity: 0;
+    transition: all 0.65s;
+    content: "";
+  }
+}
+
+.btn-style2 {
+  $btn-color: #dd7e2a;
+  $btn-hover-color: #b5c952;
+  border-color: $btn-color;
+  color: $btn-color;
+  &:hover {
+    box-shadow: 0 0.25em 0.25em -0.1em $btn-hover-color;
+    transform: translateY(-0.25em);
+    border-color: $btn-hover-color;
+    color: $btn-hover-color;
+  }
+}
+
+.btn-style3 {
+  $btn-color: #979695;
+  $btn-hover-color: #5e5e5e;
+  border-color: $btn-color;
+  color: $btn-color;
+  &:hover {
+    transform: translateY(-0.25em);
+    box-shadow: 0 0 0.5em 0em $btn-hover-color;
+    border-color: $btn-hover-color;
+    color: $btn-hover-color;
+  }
+}
+
+.btn-style4 {
+  $btn-color: #716eef;
+  $btn-hover-color: #dd648a;
+  border-color: $btn-color;
+  color: $btn-color;
+  &:hover {
+    box-shadow: inset 0 0 0.55em 0em $btn-hover-color;
+    border-color: $btn-hover-color;
+    color: $btn-hover-color;
+  }
+}
+
+.btn-style5 {
+  $btn-color: #979695;
+  $btn-hover-color: #dd6395;
+  $offset: 0.3em;
+  border-color: $btn-color;
+  color: $btn-color;
+  box-shadow: $offset $offset 0 $btn-hover-color;
+  &:hover {
+    box-shadow: (-$offset) (-$offset) 0 $btn-color;
+    background-color: $btn-hover-color;
+    border-color: $btn-hover-color;
+    color: #fff;
+  }
+}
+
+.btn-style500 {
+  $btn-color: #716eef;
+  border-color: $btn-color;
+  color: $btn-color;
+  &:hover {
+    color: #fff;
+    transition-delay: 0.2s;
+    animation: ani500 0.6s forwards;
+    background: radial-gradient(circle, $btn-color 0.2em, transparent 0.3em) 6em
+        6em/1em 1em,
+      radial-gradient(circle, $btn-color 0.2em, transparent 0.3em) 0 0/1em 1em;
+  }
+}
+@keyframes ani500 {
+  100% {
+    background-size: 2.375em 2.375em, 0.1em 0.1em;
+  }
+}
+
+.btn-style501 {
+  $btn-color: linear-gradient(to right, #a1c4fd 0%, #c2e9fb 51%, #a1c4fd 100%);
+  background-image: $btn-color;
+  background-size: 200% auto;
+  background-position: left top;
+  border-color: transparent;
+  color: #464646;
+  &:hover {
+    background-position: right bottom;
+    color: #000;
+  }
+}
+
+.btn-style502 {
+  $btn-color1: #716eef;
+  $btn-color2: #fbb8a9;
+  $btn-gradient: #c15b44;
+  border-color: $btn-color1;
+  color: #fff;
+  background: repeating-linear-gradient(
+    40deg,
+    $btn-color1 0%,
+    $btn-color1 5%,
+    $btn-color2 5%,
+    $btn-gradient 10%
+  );
+  text-shadow: 1px 1px 0em #000;
+  &:hover {
+    background-position: 120px;
+    text-shadow: 2px 2px 0.2em #000;
+  }
+}
+
+.btn-style503 {
+  $btn-color: #dd6395;
+  $btn-hover-color: #dd7e2a;
+  border-color: $btn-color;
+  color: $btn-color;
+  transition: all 0.5s;
+  &:hover {
+    box-shadow: inset 5em 0 0 0 $btn-hover-color,
+      inset -5em 0 0 0 $btn-hover-color;
+    border-color: $btn-hover-color;
+    color: #fff;
+  }
+}
+
+.btn-style504 {
+  $btn-color: #dd7e2a;
+  $btn-hover-color: #dd648a;
+  border-color: $btn-color;
+  color: $btn-color;
+  transition: all 0.5s;
+  &:hover {
+    box-shadow: inset 0 1.5em 0em 0em $btn-hover-color,
+      inset 0 -1.5em 0em 0em $btn-hover-color;
+    border-color: $btn-hover-color;
+    color: #fff;
+  }
+}
+
+.btn-style505 {
+  $btn-color: #716eef;
+  $btn-hover-color: #dd648a;
+  border-color: $btn-color;
+  color: $btn-color;
+  transition: all 0.5s;
+  &:hover {
+    box-shadow: inset 0 0 0 2em $btn-hover-color;
+    border-color: $btn-hover-color;
+    color: #fff;
+  }
+}
+
+.btn-style506 {
+  $btn-color: #dd7e2a;
+  position: relative;
+  border-color: $btn-color;
+  color: $btn-color;
+  overflow: hidden;
+  &::before {
+    width: 20%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    background-color: $btn-color;
+    transform: rotateZ(-45deg) translate(-50%, -50%);
+    transition: all 0.3s;
+    content: "";
+    z-index: -1;
+  }
+  &:hover {
+    color: #fff;
+    &::before {
+      width: 100%;
+      top: 0;
+      transform: none;
+    }
+  }
+}
+
+.btn-style507 {
+  $btn-color: #dd6395;
+  position: relative;
+  border-color: $btn-color;
+  color: $btn-color;
+  overflow: hidden;
+  &::before {
+    width: 15%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $btn-color;
+    transform: rotateZ(-45deg) translate(-50%, -50%);
+    transition: all 0.3s;
+    content: "";
+    z-index: -1;
+  }
+  &:hover {
+    color: #fff;
+    transition-delay: 0.35s;
+    // background-color:$btn-color;
+    &::before {
+      animation: ani507 0.6s forwards;
+    }
+  }
+}
+@keyframes ani507 {
+  10% {
+    width: 0;
+    transform: rotateZ(-45deg) translate(-100%, -50%);
+  }
+  20% {
+    width: 0;
+    transform: rotateZ(0) translate(-100%, 85%);
+  }
+  60% {
+    width: 100%;
+    transform: rotateZ(0) translate(0, 85%);
+  }
+  100% {
+    width: 100%;
+    transform: rotateZ(0) translate(0, 0);
+  }
+}
+
+.btn-style508 {
+  $btn-color: #5e5e5e;
+  $btn-hover-color: #117831;
+  position: relative;
+  border-color: $btn-color;
+  color: $btn-color;
+  overflow: hidden;
+  &::before {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: $border-radius;
+    transform: translate(-100%, 0) rotate(50deg);
+    transform-origin: top left;
+    transition: all 0.35s;
+    background-color: $btn-hover-color;
+    z-index: -1;
+    content: "";
+  }
+  &:hover {
+    color: #fff;
+    border-color: $btn-hover-color;
+    &::before {
+      transform: translate(0, 0);
+    }
+  }
+}
+
+.btn-style509 {
+  $btn-color: #716eef;
+  $btn-hover-color: #4b48cb;
+  position: relative;
+  background-color: $btn-color;
+  border-color: $btn-color;
+  color: #fff;
+  &::before,
+  &::after {
+    width: 49px;
+    height: 35px;
+    position: absolute;
+    border-radius: 50%;
+    background-color: $btn-hover-color;
+    transition: all 1s ease;
+    transform: scale(0);
+    content: "";
+    z-index: -1;
+  }
+  &::before {
+    top: -8px;
+    left: 10%;
+  }
+  &::after {
+    bottom: -8px;
+    right: 15%;
+  }
+  &:hover {
+    background-color: $btn-hover-color;
+    border-color: $btn-hover-color;
+    &::before,
+    &::after {
+      transform: scale(1);
+    }
+  }
+}
+
+.btn-style510 {
+  $btn-color: #5e5e5e;
+  $btn-hover-color: #dd6395;
+  position: relative;
+  background-color: $btn-color;
+  border-color: $btn-color;
+  color: #fff;
+  overflow: hidden;
+  &::before,
+  &::after {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(-100px) skewX(-15deg);
+    content: "";
+  }
+  &::before {
+    width: 60px;
+    background: rgba(255, 255, 255, 0.5);
+    filter: blur(30px);
+    opacity: 0.5;
+  }
+  &::after {
+    width: 30px;
+    left: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    filter: blur(5px);
+  }
+  &:hover {
+    background-color: $btn-hover-color;
+    border-color: $btn-hover-color;
+    &::before {
+      opacity: 1;
+    }
+    &::before,
+    &::after {
+      transform: translateX(300px) skewX(-15deg);
+      transition: all 0.9s ease;
+    }
+  }
+}
+
+.btn-style511 {
+  $btn-color: transparent;
+  $btn-hover-color: #dd6395;
+  position: relative;
+  border-color: $btn-color;
+  background-color: $btn-color;
+  color: #484848;
+  overflow: hidden;
+  span {
+    position: relative;
+    z-index: 2;
+  }
+  &::before,
+  &::after {
+    width: 100%;
+    height: 50%;
+    position: absolute;
+    left: 0;
+    background-color: $btn-hover-color;
+    transition: all 0.25s;
+    content: "";
+    z-index: 1;
+  }
+  &::before {
+    top: 0;
+    transform: translate(-100%, 0);
+  }
+  &::after {
+    bottom: 0;
+    transform: translate(100%, 0);
+  }
+  &:hover {
+    color: #fff;
+    &::before,
+    &::after {
+      transform: translate(0, 0);
+    }
+  }
+}
+
+.btn-style700 {
+  $btn-color: #979695;
+  $btn-hover-color: #dd6395;
+  position: relative;
+  border-color: $btn-color;
+  color: $btn-color;
+  &::before,
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-color: $btn-hover-color;
+    border-radius: $border-radius;
+    border-style: solid;
+    transition: all 0.35s;
+    content: "";
+    z-index: 1;
+  }
+  &::before {
+    width: 0;
+    height: 100%;
+    border-width: 1px 0 1px 0;
+  }
+  &::after {
+    width: 100%;
+    height: 0;
+    border-width: 0 1px 0 1px;
+  }
+  &:hover {
+    border-color: $btn-hover-color;
+    color: $btn-hover-color;
+    &::before {
+      width: 100%;
+      border-width: 1px 0 1px 0;
+    }
+    &::after {
+      height: 100%;
+      border-width: 0 1px 0 1px;
+    }
+  }
+}
+
+.btn-style701 {
+  $btn-color: #dd6395;
+  $btn-hover-color: #dd2470;
+  $size: 8px;
+  $offset: 50%;
+  position: relative;
+  border: none;
+  // border-color:$btn-color;
+  color: $btn-color;
+  span {
+    width: 100%;
+    display: block;
+    position: relative;
+  }
+  &::before,
+  &::after,
+  span::before,
+  span::after {
+    width: $size;
+    height: $size;
+    position: absolute;
+    transition: all 0.5s;
+    border: 3px solid $btn-color;
+    opacity: 0;
+    content: "";
+  }
+  &::before {
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+    transform: translate(-$offset, -$offset);
+  }
+  &::after {
+    bottom: 0;
+    left: 0;
+    border-right: none;
+    border-top: none;
+    transform: translate(-$offset, $offset);
+  }
+  span::before {
+    top: 0;
+    right: 0;
+    border-left: none;
+    border-bottom: none;
+    transform: translate($offset, -$offset);
+  }
+  span::after {
+    bottom: 0;
+    right: 0;
+    border-left: none;
+    border-top: none;
+    transform: translate($offset, $offset);
+  }
+  &:hover {
+    font-size: 16.5px;
+    color: $btn-hover-color;
+    &::before,
+    &::after,
+    span::before,
+    span::after {
+      opacity: 1;
+      border-color: $btn-hover-color;
+      transform: translate(0%, 0%);
+    }
+  }
+}
+
+.btn-style702 {
+  $btn-color: #716eef;
+  position: relative;
+  border-color: transparent;
+  color: #fff;
+  &::before,
+  &::after {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    transition: all 0.3s;
+    content: "";
+  }
+
+  &::before {
+    width: 100%;
+    left: 0;
+    border-radius: $border-radius;
+    background-color: $btn-color;
+    z-index: -1;
+  }
+  &::after {
+    width: 0;
+    left: 50%;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    transform: translate(-50%, 0);
+    z-index: 1;
+  }
+  &:hover {
+    color: $btn-color;
+    &::before {
+      transform: scale(0, 1);
+    }
+    &::after {
+      width: 100%;
+      border-color: $btn-color;
+      transition-delay: 0.2s;
+    }
+  }
+}
+
+.btn-style703 {
+  $btn-color: #dd7e2a;
+  $transition-sec: 0.3;
+  position: relative;
+  background-color: $btn-color;
+  border-color: $btn-color;
+  color: #fff;
+  &::before,
+  &::after,
+  span::before,
+  span::after {
+    width: 110%;
+    height: 130%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: all #{$transition-sec}s;
+    border: 0px solid $btn-color;
+    content: "";
+  }
+  &::before {
+    border-top-width: 1px;
+    transition-delay: #{$transition-sec}s;
+    transform-origin: right top;
+  }
+  &::after {
+    border-bottom-width: 1px;
+    transition-delay: #{$transition-sec * 3}s;
+    transform-origin: left bottom;
+  }
+  span {
+    &::before {
+      border-left-width: 1px;
+      transition-delay: #{$transition-sec * 2}s;
+      transform-origin: left top;
+    }
+    &::after {
+      border-right-width: 1px;
+      transform-origin: right bottom;
+    }
+  }
+  &:hover {
+    &::before,
+    &::after,
+    span::before,
+    span::after {
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+}
+
+.btn-style900 {
+  $btn-color: rgba(221, 99, 149, 1);
+  $btn-hover-color: #dd2a73;
+  position: relative;
+  border-color: $btn-color;
+  color: rgba(221, 99, 149, 1);
+  transition-delay: 0.3s;
+  overflow: hidden;
+  &:hover {
+    transform: translateY(-0.3em);
+    border-color: $btn-hover-color;
+    color: rgba(221, 99, 149, 0);
+    transition-delay: 0s;
+    &::before {
+      opacity: 1;
+      transform: translateX(0);
+      transition-delay: 0.15s;
+    }
+  }
+  &::before {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    content: attr(data-hover);
+    color: $btn-color;
+    text-align: center;
+    transform: translateX(-60%);
+    transition: all 0.4s;
+    z-index: 1;
+  }
+}
+
+.btn-style901 {
+  $btn-color: #dd7e2a;
+  position: relative;
+  background-color: $btn-color;
+  border-color: $btn-color;
+  color: #fff;
+  overflow: hidden;
+  &::before {
+    width: 25px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: "\f054";
+    font-family: "FontAwesome";
+    font-weight: bold;
+    font-size: 10px;
+    color: #fff;
+    text-indent: 5px;
+    border-radius: 0 50% 50% 0;
+    background-color: rgb(223 183 148 / 73%);
+    transform: translate(-20%, 0) scale(0, 1);
+    transform-origin: left center;
+    transition: all 0.25s;
+    z-index: 1;
+  }
+  &:hover {
+    text-indent: 20px;
+    &::before {
+      transform: translate(-20%, 0) scale(1, 1);
+    }
+  }
+}
+
+.btn-style902 {
+  $btn-color: #dd6395;
+  position: relative;
+  border-color: $btn-color;
+  background-color: $btn-color;
+  color: #fff;
+  overflow: hidden;
+  span[data-name="hover"] {
+    display: inline-block;
+    transition: all 0.25s;
+    transform: translate(0, 0);
+  }
+  span[data-name="me"] {
+    margin-left: 0.25em;
+    transition: all 0.25s;
+    opacity: 1;
+  }
+  .block {
+    width: 30%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -30%;
+    background-color: rgba(237, 157, 190, 0.5);
+    border-radius: 0 200% 200% 0;
+    transition: all 0.25s;
+    z-index: 1;
+    span {
+      display: block;
+      &::before {
+        content: "\f054";
+        font-family: "FontAwesome";
+      }
+    }
+  }
+  &:hover {
+    span[data-name="me"] {
+      opacity: 0;
+    }
+    span[data-name="hover"] {
+      transition-delay: 0.2s;
+      transform: translate(1.5em, 0);
+    }
+    .block {
+      transition-delay: 0.2s;
+      left: 0;
+    }
+  }
+}
+
+.btn-style903 {
+  $btn-color: #716eef;
+  position: relative;
+  border-color: $btn-color;
+  color: $btn-color;
+  &::before {
+    width: 15px;
+    height: 1px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+    transition: all 0.2s;
+    transition-delay: 0.1s;
+    background: $btn-color;
+    content: "";
+  }
+  &:hover {
+    background-color: $btn-color;
+    color: #fff;
+    &::before {
+      left: 100%;
+      transform: translate(-100%, -50%);
+      background-color: #fff;
+    }
+  }
+}
+
+.btn-style904 {
+  $btn-color: #dd7e2a;
+  $arrow-background: rgb(223 183 148 / 73%);
+  position: relative;
+  background-color: $btn-color;
+  border-color: $btn-color;
+  color: #fff;
+  overflow: hidden;
+  span {
+    position: relative;
+    left: -0.5em;
+    transition: all 0.25s;
+  }
+  &::before,
+  &::after {
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: $arrow-background;
+    transition: all 0.25s;
+    color: #fff;
+  }
+  &::before {
+    width: 25px;
+    content: "\f054";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "FontAwesome";
+    font-size: 10px;
+    font-weight: bold;
+    text-indent: 5px;
+    border-radius: 50% 0 0 50%;
+    z-index: 1;
+  }
+  &::after {
+    width: 100%;
+    transform: translate(100%, 0);
+    content: attr(data-hover);
+    text-align: left;
+    text-indent: 8px;
+  }
+  &:hover {
+    border-color: $arrow-background;
+    span {
+      left: -100%;
+    }
+    &::before {
+      right: 70%;
+    }
+    &::after {
+      right: 70%;
+    }
+  }
+}
+
+.btn-style905 {
+  $btn-color: #716eef;
+  $btn-hover-color: #3936af;
+  $btn-border-width: 5px;
+  $btn-hover-radius: 20px;
+  position: relative;
+  background-color: $btn-color;
+  border-width: $btn-border-width;
+  border-color: $btn-color;
+  color: #fff;
+  box-sizing: border-box;
+  &::before {
+    width: 120%;
+    height: 155%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: $btn-hover-radius;
+    border: 1px solid $btn-hover-color;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.1);
+    transform-origin: center center;
+    transition: all 0.25s;
+    content: "";
+  }
+  &:hover {
+    background-color: $btn-hover-color;
+    border-color: $btn-color;
+    border-style: inset;
+    border-radius: $btn-hover-radius;
+    &::before {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+}
+
+.btn-style906 {
+  $btn-color: #bf7b7b;
+  $btn-hover-color: #8b5252;
+  position: relative;
+  background: $btn-color;
+  border-color: $btn-color;
+  color: #fff;
+  overflow: hidden;
+  &::before {
+    width: 0;
+    height: 4.5px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #562424;
+    transition: all 0.35s;
+    content: "";
+    z-index: 2;
+  }
+  &::after {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: $border-radius;
+    background-color: $btn-hover-color;
+    transform: translate(0, -100%);
+    transition: all 0.35s;
+    content: attr(data-hover);
+    z-index: 1;
+  }
+  &:hover {
+    &::before {
+      width: 100%;
+    }
+    &::after {
+      transform: translate(0, 0);
+    }
+  }
+}
+
+9. Blob bottom 
+Html:
+<div class="buttons">
+  <button class="blob-btn">
+    Blob Button
+    <span class="blob-btn__inner">
+      <span class="blob-btn__blobs">
+        <span class="blob-btn__blob"></span>
+        <span class="blob-btn__blob"></span>
+        <span class="blob-btn__blob"></span>
+        <span class="blob-btn__blob"></span>
+      </span>
+    </span>
+  </button>
+  <br/>
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <defs>
+    <filter id="goo">
+      <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7" result="goo"></feColorMatrix>
+      <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+    </filter>
+  </defs>
+</svg>
+
+Scss:
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+$openSans: 'Open Sans', Helvetica, Arial, sans-serif;
+body {
+  background: #333;
+  font-family: $openSans;
+}
+
+.buttons {
+  margin-top: 50px;
+  text-align: center;
+  border-radius:30px;
+}
+
+$cyan: #0505A9;
+$dark: #FFFFFF;
+$borderW: 2px;
+
+.blob-btn {
+  $numOfBlobs: 4;
+  z-index: 1;
+  position: relative;
+  padding: 20px 46px;
+  margin-bottom: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  color: $cyan;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  transition: color 0.5s;
+  cursor: pointer;
+  border-radius:30px;
+  
+  &:before {
+    content: "";
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: $borderW solid $cyan;
+    border-radius:30px;
+  }
+  
+  &:after {
+    content: "";
+    z-index: -2;
+    position: absolute;
+    left: $borderW*1.5;
+    top: $borderW*1.5;
+    width: 100%;
+    height: 100%;
+
+    transition: all 0.3s 0.2s;
+    border-radius:30px;
+  }
+  
+  &:hover {
+    color: $dark;
+    border-radius:30px;
+    
+    &:after {
+      transition: all 0.3s;
+      left: 0;
+      top: 0;
+      border-radius:30px;
+    }
+  }
+  
+  &__inner {
+    z-index: -1;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius:30px;
+    background:#ffffff;
+  }
+  
+  // additional container created, because in FF blobs are breaking overflow:hidden of element with svg gooey filter
+  &__blobs {
+    position: relative;
+    display: block;
+    height: 100%;
+    filter: url('#goo');
+  }
+  
+  &__blob {
+    position: absolute;
+    top: $borderW;
+    width: 100% / $numOfBlobs;
+    height: 100%;
+    background: $cyan;
+    border-radius: 100%;
+    transform: translate3d(0,150%,0) scale(1.7);
+    transition: transform 0.45s;
+    
+    @supports(filter: url('#goo')) {
+      transform: translate3d(0,150%,0) scale(1.4);
+    }
+    
+    @for $i from 1 through $numOfBlobs {
+      &:nth-child(#{$i}) {
+        left: ($i - 1) * (120% / $numOfBlobs);
+        transition-delay: ($i - 1) * 0.08s;
+      }
+    }
+    
+    .blob-btn:hover & {
+      transform: translateZ(0) scale(1.7);
+      
+      @supports(filter: url('#goo')) {
+        transform: translateZ(0) scale(1.4);
+      }
+    }
+  }
+  
+}
+10. Creative hover button collection
+Html:
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<div id="type1">
+  <h3>Created By <a href="https://codepen.io/codery">Yasin Softaoğlu</a></h3>
+<h1>TYPE 1</h1>
+<div class="btn-1">
+  BUTTON
+</div>
+
+<div class="btn-2">
+  BUTTON
+</div>
+
+<div class="btn-3">
+  BUTTON
+</div>
+
+<div class="btn-4">
+  BUTTON
+</div>
+
+</div>
+
+<div id="type2">
+  <h1>TYPE 2</h1>
+  
+  <div class="btn-5">
+  BUTTON
+</div>
+  
+  <div class="btn-6">
+  BUTTON
+</div>
+  
+    <div class="btn-7">
+  BUTTON
+</div>
+  
+     <div class="btn-8">
+  BUTTON
+</div>
+</div>
+
+<div id="type4">
+  
+  <h1>TYPE 3</h1>
+
+     <div class="btn-12">
+  BUTTON
+</div>
+  
+       <div class="btn-13">
+  BUTTON
+</div>
+  
+  
+         <div class="btn-14">
+  BUTTON
+</div>
+  
+         <div class="btn-15">
+  BUTTON
+</div>
+  
+  </div>
+
+<div id="type3">
+
+  <h1>TYPE 4</h1>
+
+  <div class="btn-9">
+  CLICK
+</div>
+  
+  <div class="btn-10">
+  CLICK
+</div>
+  
+   <div class="btn-11">
+  CLICK
+</div>
+  
+  
+</div>
+
+Css:
+* {
+  padding:0;
+margin: 0;
+}
+body {
+  text-align: center;
+  font-family: "Roboto";
+  color: #fff;
+  letter-spacing:1px;
+}
+
+#type1 {
+  background-color:#42a5f5;
+  padding-bottom: 50px;
+}
+
+#type2 {
+  background: #66bb6a;
+  padding-bottom: 50px;
+}
+
+#type3 {
+  background: #ffa726;
+  padding-bottom: 60px;
+  position: relative;
+}
+
+#type4 {
+  background: #78909c;
+  padding-bottom: 50px;
+}
+
+h1 {
+  font-size: 50px;
+  padding: 30px 0;
+}
+
+h3 {
+  padding:30px 0 0 0;
+}
+
+h3 a {
+  margin-left:5px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: light;
+  border-bottom: 1px dotted;
+  padding: 0 2px 3px 2px;
+}
+
+h3 a:hover {
+  border-bottom:1px solid;
+}
+
+.btn-1 {
+  text-align: center;
+  display: inline-block;
+  padding: 15px 40px;
+  border: 1px solid #fff;
+  cursor: pointer;
+  letter-spacing: 2px;
+  position:relative;
+  overflow:hidden;
+  margin: 0 20px;
+}
+
+.btn-1:before {
+  content: "";
+  position: absolute;
+  height: 150px;
+  width: 50px;
+  background : #fff;
+  left: -55px;
+  top: -40px;
+  transform: rotate(37deg);
+  transition: all .3s;
+  opacity: 0.3;
+}
+
+.btn-1:hover:before {
+  left:95%;
+}
+
+/* Buton 1 bitti */
+
+.btn-2 {
+  text-align: center;
+  display: inline-block;
+  padding: 15px 40px;
+  border: 1px solid #fff;
+  cursor: pointer;
+  letter-spacing: 2px;
+  position:relative;
+  overflow:hidden;
+  margin: 0 20px;
+}
+
+.btn-2:before {
+  content: "";
+  position: absolute;
+  height: 11px;
+  width: 100%;
+  background : #fff;
+  left: 0;
+  top: 0;
+  transition: all .3s;
+  opacity: 0.3;
+}
+
+.btn-2:hover:before {
+  top: 77%;
+}
+
+/* Buton 2 Bitti */
+
+.btn-3 {
+  text-align: center;
+  display: inline-block;
+  padding: 15px 40px;
+  border: 1px solid #fff;
+  cursor: pointer;
+  letter-spacing: 2px;
+  position:relative;
+  overflow:hidden;
+  margin: 0 20px;
+}
+
+.btn-3:before {
+  content: "";
+  position: absolute;
+  height: 11px;
+  width: 100%;
+  background : #fff;
+  left: 0;
+  bottom: 0;
+  transition: all .3s;
+  opacity: 0.3;
+}
+
+.btn-3:hover:before {
+  bottom: 80%;
+}
+
+/* Buton 3 Bitti */
+
+.btn-4 {
+  text-align: center;
+  display: inline-block;
+  padding: 15px 40px;
+  border: 1px solid #fff;
+  cursor: pointer;
+  letter-spacing: 2px;
+  position:relative;
+  overflow:hidden;
+  margin: 0 20px;
+}
+
+.btn-4:before {
+  content: "";
+  position: absolute;
+  height: 150px;
+  width: 50px;
+  background : #fff;
+  right: -40px;
+  top: -40px;
+  transform: rotate(37deg);
+  transition: all .3s;
+  opacity: 0.3;
+}
+
+.btn-4:hover:before {
+  right: 105%;
+}
+
+/* Buton 4 Bitti */
+
+.btn-5 {
+  text-align: center;
+  display: inline-block;
+  padding: 15px 40px;
+  border: 1px solid #fff;
+  cursor: pointer;
+  letter-spacing: 2px;
+  position:relative;
+  overflow:hidden;
+  margin: 0 20px;
+}
+
+.btn-5:before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 0;
+  background : #fff;
+  left: 0;
+  bottom: 0;
+  transition: all .3s;
+  opacity: 0.3;
+}
+
+.btn-5:hover:before {
+  width: 100%;
+}
+
+/* Buton 5 Bitti */
+
+.btn-6 {
+  text-align: center;
+  display: inline-block;
+  padding: 15px 40px;
+  border: 1px solid #fff;
+  cursor: pointer;
+  letter-spacing: 2px;
+  position:relative;
+  overflow:hidden;
+  margin: 0 20px;
+}
+
+.btn-6:before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 0;
+  background : #fff;
+  left: 100%;
+  bottom: 0;
+  transition: all .3s;
+  opacity: 0.3;
+}
+
+.btn-6:hover:before {
+  width: 100%;
+  left:0;
+}
+
+/* Buton 6 Bitti */
+
+.btn-7 {
+  text-align: center;
+  display: inline-block;
+  padding: 15px 40px;
+  border: 1px solid #fff;
+  cursor: pointer;
+  letter-spacing: 2px;
+  position:relative;
+  overflow:hidden;
+  margin: 0 20px;
+}
+
+.btn-7:before {
+  content: "";
+  position: absolute;
+  height: 0;
+  width: 100%;
+  background : #fff;
+  left: 0;
+  top: 0;
+  transition: all .3s;
+  opacity: 0.3;
+}
+
+.btn-7:hover:before {
+  height: 100%;
+}
+
+/* Buton 7 Bitti */
+
+.btn-8 {
+  text-align: center;
+  display: inline-block;
+  padding: 15px 40px;
+  border: 1px solid #fff;
+  cursor: pointer;
+  letter-spacing: 2px;
+  position:relative;
+  overflow:hidden;
+  margin: 0 20px;
+}
+
+.btn-8:before {
+  content: "";
+  position: absolute;
+  height: 0;
+  width: 100%;
+  background : #fff;
+  left: 0;
+  bottom: 0;
+  transition: all .3s;
+  opacity: 0.3;
+}
+
+.btn-8:hover:before {
+  height: 100%;
+}
+
+/* Buton 8 Bitti */
+
+.btn-9 {
+  background: #51A3B8;
+            font-size: 20px;
+            color: white;
+            border-radius: 7px;
+            box-shadow: 0 7px 0px #387796;
+            display: inline-block;
+            transition: all .2s;
+            position: relative;
+            padding: 20px 25px;
+            position: relative;
+            top: 0;
+            cursor: pointer;
+  margin:0 20px;
+}
+
+ .btn-9:active {
+            top: 3px;
+            box-shadow: 0 2px 0px #387796;
+            transition: all .2s;
+        }
+/* Buton 9 Bitti */
+
+.btn-10 {
+  background: #8d6e63;
+            font-size: 20px;
+            color: white;
+            border-radius: 7px;
+            box-shadow: 0 7px 0px #6d4c41;
+            display: inline-block;
+            transition: all .2s;
+            position: relative;
+            padding: 20px 25px;
+            position: relative;
+            top: 0;
+            cursor: pointer;
+  margin:0 20px;
+}
+
+ .btn-10:active {
+            top: 3px;
+            box-shadow: 0 2px 0px #6d4c41;
+            transition: all .2s;
+        }
+
+/* Buton 10 Bitti */
+
+.btn-11 {
+  background: #7986cb;
+            font-size: 20px;
+            color: white;
+            border-radius: 7px;
+            box-shadow: 0 7px 0px #3f51b5;
+            display: inline-block;
+            transition: all .2s;
+            position: relative;
+            padding: 20px 25px;
+            position: relative;
+            top: 0;
+            cursor: pointer;
+  margin:0 20px;
+}
+
+ .btn-11:active {
+            top: 3px;
+            box-shadow: 0 2px 0px #3f51b5;
+            transition: all .2s;
+        }
+
+/* Buton 11 Bitti */
+
+.btn-12 {
+  text-align: center;
+  display: inline-block;
+  padding: 15px 40px;
+  cursor: pointer;
+  letter-spacing: 2px;
+  position:relative;
+  overflow:hidden;
+  margin: 0 20px;
+}
+
+.btn-12:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  background : #fff;
+  left: 45%;
+  height: 2px;
+  bottom: 0;
+  transition: all .3s;
+  opacity: 0.7;
+}
+
+.btn-12:hover:before {
+  width: 100%;
+  left:0;
+}
+
+/* Button 12 Bitti */
+
+.btn-13 {
+  text-align: center;
+  display: inline-block;
+  padding: 15px 40px;
+  cursor: pointer;
+  letter-spacing: 2px;
+  position:relative;
+  overflow:hidden;
+  margin: 0 20px;
+}
+
+.btn-13:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  background : #fff;
+  left: 45%;
+  height: 2px;
+  top: 0;
+  transition: all .3s;
+  opacity: 0.7;
+}
+
+.btn-13:hover:before {
+  width: 100%;
+  left:0;
+}
+
+/* Buton 13 Bitti */
+
+.btn-14 {
+  text-align: center;
+  display: inline-block;
+  padding: 15px 40px;
+  cursor: pointer;
+  letter-spacing: 2px;
+  position:relative;
+  overflow:hidden;
+  margin: 0 20px;
+  border-bottom: 2px solid #fff;
+}
+
+.btn-14:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  background : #fff;
+  left: 45%;
+  height: 2px;
+  top: 0;
+  transition: all .3s;
+  opacity: 0.7;
+}
+
+.btn-14:hover:before {
+  width: 100%;
+  left:0;
+}
+
+/* Buton 14 Bitti */
+
+.btn-15 {
+  text-align: center;
+  display: inline-block;
+  padding: 15px 40px;
+  cursor: pointer;
+  letter-spacing: 2px;
+  position:relative;
+  overflow:hidden;
+  margin: 0 20px;
+  border-top: 2px solid #fff;
+}
+
+.btn-15:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  background : #fff;
+  left: 45%;
+  height: 2px;
+  bottom: 0;
+  transition: all .3s;
+  opacity: 0.7;
+}
+
+.btn-15:hover:before {
+  width: 100%;
+  left:0;
+}
+
+11.CSS loading button
+Html:
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+<button>
+  <span>Loading ...</span>
+</button>
+
+Css:
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  display: grid;
+  place-items: center;
+}
+
+button {
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  display: grid;
+  place-items: center;
+  height: 64px;
+  padding: 0 32px;
+  border: 0;
+  border-radius: 10px;
+  font-family: Poppins;
+  font-size: 18px;
+  color: #ffffff;
+  cursor: wait;
+}
+
+@keyframes loading {
+  0% {
+    transform: translateX(25px);
+  }
+  100% {
+    transform: translateX(-20px);
+  }
+}
+
+button > span {
+  position: relative;
+  z-index: 2;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: -100%;
+  width: 300%;
+  height: 100%;
+  background: #8f44fd
+    repeating-linear-gradient(
+    60deg,
+      transparent,
+      transparent 10px,
+      #7a3bd7 10px,
+      #7a3bd7 20px
+    );
+  
+  animation: loading 1s infinite linear;
+}
+12. CSS loading button 2
+Html:
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<button><i class="fa fa-spinner fa-pulse"></i> Loading</button>
+Css:
+button
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.5);
+  width: 170px;
+  height: 50px;
+  font-size: 25px;
+  border: none;
+  background: #339966;
+  box-shadow: 0 0 5px #000;
+  color: #fff;
+  font-family: verdana;
+  outline: none;
+  cursor: progress;
+}
+13. CSS menu transition
+Html:
+<section class="landing">
+  <div class="welcome">
+    <h1>CSS menu transitions</h1>
+    <span>for inspiration and stuff</span>
+    <span>Contains sloppy code, pseudo-element transitions, only tested on Firefox 35.0</span>
+  </div>
+</section>
+<a class="anchor" name="nav-1"></a>
+<section class="nav-1">
+  <nav>
+    <a class="item" href="#nav-1">
+      <div class="linktext">Home</div>
+    </a>
+    <a class="item" href="#nav-1">
+      <div class="linktext">About</div>
+    </a>
+    <a class="item" href="#nav-1">
+      <div class="linktext">Portfolio</div>
+    </a>
+    <a class="item" href="#nav-1">
+      <div class="linktext">Contact</div>
+    </a>
+    <a class="item" href="#nav-1">
+      <div class="linktext">Blog</div>
+    </a>
+  </nav>
+</section>
+<a class="anchor" name="nav-2"></a>
+<section class="nav-2">
+  <nav>
+    <a class="item" href="#nav-2">
+      <div data-text="Home" class="linktext">Home</div>
+    </a>
+    <a class="item" href="#nav-2">
+      <div data-text="About" class="linktext">About</div>
+    </a>
+    <a class="item" href="#nav-2">
+      <div data-text="Portfolio" class="linktext">Portfolio</div>
+    </a>
+    <a class="item" href="#nav-2">
+      <div data-text="Contact" class="linktext">Contact</div>
+    </a>
+    <a class="item" href="#nav-2">
+      <div data-text="Blog" class="linktext">Blog</div>
+    </a>
+  </nav>
+</section>
+<a class="anchor" name="nav-3"></a>
+<section class="nav-3">
+  <nav>
+    <a class="item" href="#nav-3">
+      <div data-text="Home" class="linktext">Home</div>
+    </a>
+    <a class="item" href="#nav-3">
+      <div data-text="About" class="linktext">About</div>
+    </a>
+    <a class="item" href="#nav-3">
+      <div data-text="Portfolio" class="linktext">Portfolio</div>
+    </a>
+    <a class="item" href="#nav-3">
+      <div data-text="Contact" class="linktext">Contact</div>
+    </a>
+    <a class="item" href="#nav-3">
+      <div data-text="Blog" class="linktext">Blog</div>
+    </a>
+  </nav>
+</section>
+<a class="anchor" name="nav-4"></a>
+<section class="nav-4">
+  <nav>
+    <a class="item" href="#nav-4">
+      <div class="linktext">Home</div>
+    </a>
+    <a class="item" href="#nav-4">
+      <div class="linktext">About</div>
+    </a>
+    <a class="item" href="#nav-4">
+      <div class="linktext">Portfolio</div>
+    </a>
+    <a class="item" href="#nav-4">
+      <div class="linktext">Contact</div>
+    </a>
+    <a class="item" href="#nav-4">
+      <div class="linktext">Blog</div>
+    </a>
+  </nav>
+</section>
+<a class="anchor" name="nav-5"></a>
+<section class="nav-5">
+  <nav>
+    <a class="item" href="#nav-5">
+      <div data-text="Home" class="linktext">Home</div>
+      <div class="testbox fix"><span>Home</span></div>
+    </a>
+    <a class="item" href="#nav-5">
+      <div data-text="About" class="linktext">About</div>
+      <div class="testbox"><span>About</span></div>
+    </a>
+    <a class="item" href="#nav-5">
+      <div data-text="Portfolio" class="linktext">Portfolio</div>
+      <div class="testbox fix"><span>Portfolio</span></div>
+    </a>
+    <a class="item" href="#nav-5">
+      <div data-text="Contact" class="linktext">Contact</div>
+      <div class="testbox"><span>Contact</span></div>
+    </a>
+    <a class="item" href="#nav-5">
+      <div data-text="Blog" class="linktext">Blog</div>
+      <div class="testbox fix"><span>Blog</span></div>
+    </a>
+  </nav>
+</section>
+<a class="anchor" name="nav-6"></a>
+<section class="nav-6">
+  <nav>
+    <a class="item" href="#nav-6">
+      <div class="linktext">Home</div>
+    </a>
+    <a class="item" href="#nav-6">
+      <div class="linktext">About</div>
+    </a>
+    <a class="item" href="#nav-6">
+      <div class="linktext">Portfolio</div>
+    </a>
+    <a class="item" href="#nav-6">
+      <div class="linktext">Contact</div>
+    </a>
+    <a class="item" href="#nav-6">
+      <div class="linktext">Blog</div>
+    </a>
+  </nav>
+</section>
+<a class="anchor" name="nav-7"></a>
+<section class="nav-7">
+  <nav>
+    <a class="item" href="#nav-7">
+      <div class="linktext">Home</div>
+    </a>
+    <a class="item" href="#nav-7">
+      <div class="linktext">About</div>
+    </a>
+    <a class="item" href="#nav-7">
+      <div class="linktext">Portfolio</div>
+    </a>
+    <a class="item" href="#nav-7">
+      <div class="linktext">Contact</div>
+    </a>
+    <a class="item" href="#nav-7">
+      <div class="linktext">Blog</div>
+    </a>
+  </nav>
+</section>
+<a class="anchor" name="nav-8"></a>
+<section class="nav-8">
+  <nav>
+    <a class="item" href="#nav-8">
+      <div data-text="Main page" class="linktext">Home</div>
+    </a>
+    <a class="item" href="#nav-8">
+      <div data-text="What we do" class="linktext">About</div>
+    </a>
+    <a class="item" href="#nav-8">
+      <div data-text="See our works" class="linktext">Portfolio</div>
+    </a>
+    <a class="item" href="#nav-8">
+      <div data-text="Get in touch" class="linktext">Contact</div>
+    </a>
+    <a class="item" href="#nav-8">
+      <div data-text="Thoughts" class="linktext">Blog</div>
+    </a>
+  </nav>
+</section>
+<a class="anchor" name="nav-9"></a>
+<section class="nav-9">
+  <nav>
+    <a class="item" href="#nav-9">
+      <div data-text="Main page" class="linktext">Home</div>
+    </a>
+    <a class="item" href="#nav-9">
+      <div data-text="What we do" class="linktext">About</div>
+    </a>
+    <a class="item" href="#nav-9">
+      <div data-text="See our works" class="linktext">Portfolio</div>
+    </a>
+    <a class="item" href="#nav-9">
+      <div data-text="Get in touch" class="linktext">Contact</div>
+    </a>
+    <a class="item" href="#nav-9">
+      <div data-text="Thoughts"  class="linktext">Blog</div>
+    </a>
+  </nav>
+</section>
+
+Css:
+@import url(https://fonts.googleapis.com/css?family=Righteous);
+@import url(https://fonts.googleapis.com/css?family=Black+Ops+One);
+body, html {
+  margin:0px;
+  background:#2ECC71;
+  color:#fff;
+  text-align:center;
+  height:325px;
+  max-height:325px;
+}
+section{
+  height:100vh;
+}
+.anchor{
+  position:absolute;
+}
+.item{
+  margin-bottom:20px;
+}
+.landing{
+  background:#34495E;
+  font-family:'Righteous', Arial, sans-serif;
+}
+.welcome{
+  position:relative;
+  top:50%;
+  transform:translateY(-50%);
+  -webkit-transform:translateY(-50%);
+}
+.welcome h1{
+  color:#FFF;
+  margin:0;
+  padding:0;
+  font-size:3em;
+}
+.welcome span{
+  font-size:2em;
+  color:#16A085;
+  position:relative;
+}
+.welcome span:nth-child(3){
+  position:relative;
+  display:block;
+  color:#117D68;
+  font-size:1em;
+}
+
+/*    NAV-1    */
+.nav-1{
+  background:#2ECC71;
+}
+.nav-1 nav{
+  background:#34E37E;
+}
+nav{
+  position:relative;
+  max-width:800px;
+  padding-top:50px;
+  height:100px;
+  top:50%;
+  transform:translateY(-50%);
+  -webkit-transform:translateY(-50%);
+  margin-left:-400px;
+  left:50%;
+}
+.nav-1 .item{
+  position:relative;
+  display:inline-block;
+  width:100px;
+  height:35px;
+  padding-top:15px;
+  margin-left:7px;
+  margin-right:7px;
+  background:transparent;
+  z-index:2;
+  color:#007BFF;
+  text-decoration:none;
+  text-transform:uppercase;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+}
+.nav-1 .item:hover .linktext:before{
+  opacity:1;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+  transform:scale(0.7);
+  -webkit-transform:scale(0.7);
+}
+.nav-1 .linktext{
+  font-size:1em;
+  width:100px;
+  text-align:center;
+  position:relative;
+  z-index:2;
+  color:#C1F5BA;
+  text-decoration:none;
+  font-family:'Black Ops One', 'Righteous', Arial, sans-serif;
+  text-transform:uppercase;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+}
+.nav-1 .item .linktext:before{
+  content:'';
+  transform:scale(0.2);
+  -webkit-transform:scale(0.2);
+  z-index:-1;
+  transition: 0.3s ease-in-out;
+  -webkit-transition: 0.3s ease-in-out;
+  opacity: 0;
+  position: absolute;
+  top:-55.5px;
+  left:-14px;
+  height: 100px;
+  width: 100px;
+  background: none;
+  border-radius: 100px;
+  border-top: 15px solid #87F5B5;
+  border-bottom: 15px solid #87F5B5;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+}
+.nav-1 .item:hover .linktext{
+  color:#1BBF61;
+  transform:scale(1.3);
+  -webkit-transform:scale(1.3);
+}
+@media (max-width:840px){
+  nav{
+    margin-left:20px;
+    margin-right:20px;
+    left:0px;
+    height:auto;
+  }
+  .item{
+    margin-bottom:50px;
+  }
+}
+/*   /NAV-1   */
+
+
+.nav-2{
+  background:#2E71CC;
+}
+.nav-2 nav{
+  background:#3384F2;
+}
+.nav-2 .linktext{
+  font-size:1.3em;
+  text-align:center;
+  position:relative;
+  z-index:2;
+  color:#85B9FF;
+  text-decoration:none;
+  font-family: 'Righteous', Arial, sans-serif;
+  text-transform:uppercase;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+  transition-delay:0s;
+  -webkit-transition-delay:0s;
+}
+.nav-2 .linktext:before{
+  display:inline-block;
+  content:attr(data-text);
+  position:absolute;
+  top:0px;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+  transition-delay:0.15s;
+  -webkit-transition-delay:0.15s;
+  opacity:1;
+  color:#236CCF;
+}
+.nav-2 .item{
+  position:relative;
+  display:inline-block;
+  height:35px;
+  padding-top:15px;
+  margin-left:25px;
+  margin-right:25px;
+  background:transparent;
+  z-index:2;
+  color:#007BFF;
+  text-decoration:none;
+  font-family:Arial, sans-serif;
+  text-transform:uppercase;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+}
+/*.nav-2 .item:hover .linktext{
+  color:#236CCF;
+}*/
+.nav-2 .item:hover .linktext{
+  transform:scale(1.3);
+  -webkit-transform:scale(1.3);
+  transition-delay:0.15s;
+  -webkit-transition-delay:0.15s;
+}
+.nav-2 .item:hover .linktext:before{
+  transform:translateY(30px);
+  -webkit-transform:translateY(30px);
+  transition-delay:0s;
+  -webkit-transition-delay:0s;
+  opacity:0;
+}
+
+/*   /NAV-2   */
+
+.nav-3{
+  background:#DB4444;
+}
+.nav-3 nav{
+  background:#FF5C5C;
+}
+.nav-3 .linktext{
+  font-size:1.3em;
+  text-align:center;
+  position:relative;
+  z-index:2;
+  color:#DB4444;
+  text-decoration:none;
+  font-family: 'Righteous', Arial, sans-serif;
+  text-transform:uppercase;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+}
+.nav-3 .linktext:before{
+  display:inline-block;
+  content:attr(data-text);
+  position:absolute;
+  top:0px;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+  opacity:1;
+  color:#FFABAB;
+  overflow:hidden;
+  max-width:0%;
+  max-height:0%;
+}
+.nav-3 .item{
+  position:relative;
+  display:inline-block;
+  height:35px;
+  padding-top:15px;
+  margin-left:25px;
+  margin-right:25px;
+  background:transparent;
+  z-index:2;
+  color:#DB4444;
+  text-decoration:none;
+  font-family:Arial, sans-serif;
+  text-transform:uppercase;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+}
+.nav-3 .item:hover .linktext:before{
+  max-width:100%;
+  max-height:100%;
+}
+
+/*   /NAV-3   */
+
+.nav-4{
+  background:#2ECC71;
+}
+.nav-4 nav{
+  background:#34E37E;
+}
+.nav-4 .linktext{
+  font-size:1.3em;
+  text-align:center;
+  position:relative;
+  z-index:2;
+  color:#C1F5BA;
+  text-decoration:none;
+  font-family: 'Righteous', Arial, sans-serif;
+  text-transform:uppercase;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+}
+.nav-4 .linktext:before{
+  display:inline-block;
+  content:'';
+  position:absolute;
+  height:3px;
+  width:100%;
+  top:26px;
+  left:50%;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+  transition-delay:0s;
+  -webkit-transition-delay:0s;
+  opacity:1;
+  background:#94F587;
+  max-width:0%;
+  overflow:hidden;
+}
+.nav-4 .item{
+  position:relative;
+  display:inline-block;
+  height:35px;
+  padding-top:15px;
+  margin-left:25px;
+  margin-right:25px;
+  margin-bottom:20px;
+  background:transparent;
+  z-index:2;
+  text-decoration:none;
+  font-family:Arial, sans-serif;
+  text-transform:uppercase;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+}
+.nav-4 .item:hover .linktext{
+  transform:rotateY(360deg) scale(1.3);
+  -webkit-transform:rotateY(360deg) scale(1.3);
+  color:#94F587;
+}
+.nav-4 .item:hover .linktext:before{
+  transition-delay:0.3s;
+  -webkit-transition-delay:0.3s;
+  max-width:100%;
+  left:0%;
+}
+
+/*   /NAV-4   */
+
+.nav-5{
+  background:#2E71CC;
+}
+.nav-5 nav{
+  background:#3384F2;
+}
+.nav-5 .linktext{
+  font-size:1.3em;
+  text-align:center;
+  position:relative;
+  z-index:2;
+  color:#85B9FF;
+  text-decoration:none;
+  font-family:'Black Ops One', 'Righteous', Arial, sans-serif;
+  text-transform:uppercase;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+  transform:translate(0,0);
+  -webkit-transform:translate(0,0);
+  text-shadow:rgba(133,185,255,0);
+}
+.nav-5 .linktext:after{
+  display:inline-block;
+  content:attr(data-text);
+  position:absolute;
+  top:0px;
+  left:0px;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+  opacity:0;
+  transform:translate(-20px, -50px) rotate(-20deg);
+  -webkit-transform:translate(-20px, -50px) rotate(-20deg);
+  color:#236CCF;
+  max-width:50%;
+  overflow:hidden;
+  visibility:hidden;
+}
+.nav-5 .item{
+  position:relative;
+  display:inline-block;
+  height:35px;
+  padding-top:15px;
+  margin-left:25px;
+  margin-right:25px;
+  background:transparent;
+  z-index:2;
+  color:#007BFF;
+  text-decoration:none;
+  font-family:Arial, sans-serif;
+  text-transform:uppercase;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+}
+.nav-5 .item:hover .linktext:after, .nav-5 .item:hover .testbox{
+  visibility:visible;
+  transform:translate(0,0);
+  -webkit-transform:translate(0,0);
+  opacity:1;
+}
+.nav-5 .item:hover .linktext{
+  color:rgba(133,185,255,0);
+  transition-delay:0.3s;
+  -webkit-transition-delay:0.3s;
+}
+.testbox{
+  position:absolute;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+  left:50%;
+  height:25px;
+  width:100%;
+  top:15px;
+  background:transparent;
+  text-align:right;
+  overflow:hidden;
+  transform:translate(20px, -50px) rotate(20deg);
+  -webkit-transform:translate(20px, -50px) rotate(20deg);
+  z-index:2;
+  opacity:0;
+  transition-delay:0.15s;
+  -webkit-transition-delay:0.15s;
+  visibility:visible;
+}
+.fix{
+  left: calc(50% + -0.5px);
+}
+.testbox span{
+  font-size:1.3em;
+  position:absolute;
+  left:-50%;
+  z-index:2;
+  color:#236CCF;
+  text-decoration:none;
+  font-family:'Black Ops One', 'Righteous', Arial, sans-serif;
+  text-transform:uppercase;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+}
+
+/*   /NAV-5   */
+
+.nav-6{
+  background:#DB4444;
+}
+.nav-6 nav{
+  background:#FF5C5C;
+}
+.nav-6 .linktext{
+  font-size:1.3em;
+  text-align:center;
+  position:relative;
+  z-index:2;
+  text-decoration:none;
+  font-family:'Black Ops One', 'Righteous', Arial, sans-serif;
+  text-transform:uppercase;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+}
+.nav-6 .linktext:before{
+  display:inline-block;
+  content:attr(data-text);
+  position:absolute;
+  top:0px;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+  opacity:1;
+  color:#FFABAB;
+  overflow:hidden;
+  max-width:0%;
+  max-height:0%;
+}
+.nav-6 .item{
+  position:relative;
+  display:inline-block;
+  height:35px;
+  padding-top:15px;
+  margin-left:25px;
+  margin-right:25px;
+  background:transparent;
+  z-index:2;
+  color:rgba(219,68,68,1);
+  text-shadow:1px 0px 0px rgba(219,68,68,1);
+  text-decoration:none;
+  font-family:Arial, sans-serif;
+  text-transform:uppercase;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+}
+.nav-6 .item:hover .linktext:before{
+  max-width:100%;
+  max-height:100%;
+}
+.nav-6 nav:hover .item{
+  color:rgba(219,68,68,0);
+  text-shadow:0px 0px 3px rgba(219,68,68,1);
+}
+.nav-6 nav .item:hover{
+  transform:scale(1.3);
+  -webkit-transform:scale(1.3);
+  color:rgba(219,68,68,0);
+  text-shadow:0px 0px 0px rgba(255,150,150,1);
+}
+
+/*  NAV-6  */
+
+.nav-7{
+  background:#2ECC71;
+}
+.nav-7 nav{
+  background:#34E37E;
+}
+.nav-7 .linktext{
+  font-size:1.3em;
+  text-align:center;
+  position:relative;
+  z-index:2;
+  color:#C1F5BA;
+  text-decoration:none;
+  font-family:'Black Ops One', 'Righteous', Arial, sans-serif;
+  font-family: 'Righteous', Arial, sans-serif;
+  text-transform:uppercase;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+}
+.nav-7 .linktext:before{
+  display:inline-block;
+  z-index:-1;
+  content:'';
+  position:absolute;
+  left:-10px;
+  height:100%;
+  width:calc(100% + 20px);
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+  transition-delay:0s;
+  -webkit-transition-delay:0s;
+  opacity:1;
+  background:#2ECC71;
+  border-radius:10px;
+  transform:scale(0.2);
+  -webkit-transform:scale(0.2);
+  opacity:0;
+}
+.nav-7 .linktext:after{
+  position:absolute;
+  content:'';
+  width:0px;
+  height:0px;
+  top:25px;
+  left:calc(50% - 20px);
+  border-left:20px solid transparent;
+  border-right:20px solid transparent;
+  border-top: 20px solid #2ECC71;
+  transform:scale(0.2) translateY(-100px);
+  -webkit-transform:scale(0.2) translateY(-100px);
+  opacity:0;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+}
+.nav-7 .item{
+  position:relative;
+  display:inline-block;
+  height:35px;
+  padding-top:15px;
+  margin-left:25px;
+  margin-right:25px;
+  margin-bottom:20px;
+  background:transparent;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+  z-index:2;
+  text-decoration:none;
+  font-family:Arial, sans-serif;
+  text-transform:uppercase;
+}
+.nav-7 .item:hover .linktext{
+  transform:scale(1.2);
+  -webkit-transform:scale(1.2);
+  color:#94F587
+}
+.nav-7 .item:hover .linktext:before, .nav-7 .item:hover .linktext:after{
+  opacity:1;
+  transform:scale(1);
+  -webkit-transform:scale(1);
+}
+
+/*   /NAV-7   */
+
+
+.nav-8{
+  background:#2E71CC;
+}
+.nav-8 nav{
+  background:#3384F2;
+}
+.nav-8 .linktext{
+  font-size:1.3em;
+  text-align:center;
+  position:relative;
+  z-index:2;
+  color:#85B9FF;
+  text-decoration:none;
+  font-family: 'Righteous', Arial, sans-serif;
+  text-transform:uppercase;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+  transition-delay:0s;
+  -webkit-transition-delay:0s;
+}
+.nav-8 .linktext:before, .nav-8 .linktext:after{
+  opacity:0;
+  position:absolute;
+  top:7px;
+  transform:translateY(36px);
+  -webkit-transform:translateY(36px);
+  left:0px;
+  width:100%;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+  font-size:0.5em;
+}
+.nav-8 .linktext:before{
+  content:'';
+  height:2px;
+  background:#236CCF;
+  transition-delay:0s;
+  -webkit-transition-delay:0s;
+}
+.nav-8 .linktext:after{
+  content:attr(data-text);
+  color:#85B9FF;
+  transition-delay:0s;
+  -webkit-transition-delay:0s;
+}
+.nav-8 .item{
+  position:relative;
+  display:inline-block;
+  height:35px;
+  padding-top:15px;
+  margin-left:25px;
+  margin-right:25px;
+  margin-bottom:25px;
+  background:transparent;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+  z-index:2;
+  color:#007BFF;
+  text-decoration:none;
+  font-family:Arial, sans-serif;
+  text-transform:uppercase;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+}
+.nav-8 .item:hover .linktext{
+  transform:scale(1.3);
+  -webkit-transform:scale(1.3);
+}
+.nav-8 .item:hover .linktext:before{
+  transition-delay:0s;
+  -webkit-transition-delay:0s;
+}
+.nav-8 .item:hover .linktext:after{
+  transition-delay:0.15s;
+  -webkit-transition-delay:0.15s;
+}
+.nav-8 .item:hover .linktext:before, .nav-8 .item:hover .linktext:after{
+  transform:translateY(16px);
+  -webkit-transform:translateY(16px);
+  opacity:1;
+}
+
+/*   /NAV-8   */
+
+.nav-9{
+  background:#DB4444;
+}
+.nav-9 nav{
+  background:#FF5C5C;
+}
+.nav-9 .linktext{
+  font-size:1.3em;
+  top:0px;
+  text-align:center;
+  position:relative;
+  z-index:2;
+  color:#FFABAB;
+  text-decoration:none;
+  font-family: 'Righteous', Arial, sans-serif;
+  text-transform:uppercase;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+}
+.nav-9 .linktext:before{
+  content:'';
+  position:absolute;
+  top:0px;
+  left:-5px;
+  width:calc(100% + 5px);
+  border-left:3px solid #FFABAB;
+  border-right:3px solid #FFABAB;
+  height:150%;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+  opacity:1;
+  background:transparent;
+  max-height:0%;
+  transform:translateY(20px);
+  -webkit-transform:translateY(20px);
+}
+.nav-9 .linktext:after{
+  display:inline-block;
+  content:attr(data-text);
+  position:absolute;
+  top:24px;
+  left:0px;
+  width:100%;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+  font-size:0.5em;
+  color:#FFABAB;
+  transform:translateY(30px);
+  -webkit-transform:translateY(30px);
+  opacity:0;
+}
+.nav-9 .item{
+  position:relative;
+  display:inline-block;
+  height:35px;
+  padding-top:15px;
+  margin-left:25px;
+  margin-right:25px;
+  background:transparent;
+  z-index:2;
+  color:rgba(219,68,68,1);
+  text-decoration:none;
+  font-family:Arial, sans-serif;
+  text-transform:uppercase;
+  transition:0.3s ease-in-out;
+  -webkit-transition:0.3s ease-in-out;
+}
+.nav-9 .item:hover .linktext:before{
+  max-height:150%;
+  transition-delay:0.3s;
+  -webkit-transition-delay:0.3s;
+  transform:translateY(0%);
+  -webkit-transform:translateY(0%);
+}
+.nav-9 .item:hover .linktext:after{
+  opacity:1;
+  transition-delay:0.5s;
+  -webkit-transition-delay:0.5s;
+  transform:translateY(0px);
+  -webkit-transform:translateY(0px);
+}
+.nav-9 .item:hover .linktext{
+  color:rgba(219,68,68,1);
+  top:-10px;
+  transform:scale(1.3);
+  -webkit-transform:scale(1.3);
+}
+14. Sliced button
+Html:
+<a class="btn-slice" href="#">
+  <div class="top"><span>Sliced Button</span></div>
+	<div class="bottom"><span>Sliced Button</span></div>
+</a>
+Css:
+/*--Global Styles--*/
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One'); 
+
+body {
+  background-color: #ff8a80;
+  font-family: 'Fjalla One', sans-serif;
+	text-transform: uppercase;
+  height: 95vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+/*--Button Styles--*/
+.btn-slice {
+	padding: 1.2rem 2.5rem;
+  border: 2px solid #ffffff;
+	border-radius: 0rem;
+	color: #ffffff;
+	font-size: 0.6875rem;
+	font-weight: 700;
+	letter-spacing: 0.3rem;
+  position: relative;
+  
+  -webkit-transition: all 1000ms cubic-bezier(0.890, 0, 0.140, 1); /* older webkit */
+  -webkit-transition: all 1000ms cubic-bezier(0.890, -0.170, 0.140, 1.225); 
+  -moz-transition: all 1000ms cubic-bezier(0.890, -0.170, 0.140, 1.225); 
+  -o-transition: all 1000ms cubic-bezier(0.890, -0.170, 0.140, 1.225); 
+  transition: all 1000ms cubic-bezier(0.890, -0.170, 0.140, 1.225); /* custom */
+
+  -webkit-transition-timing-function: cubic-bezier(0.890, 0, 0.140, 1); /* older webkit */
+  -webkit-transition-timing-function: cubic-bezier(0.890, -0.170, 0.140, 1.225); 
+  -moz-transition-timing-function: cubic-bezier(0.890, -0.170, 0.140, 1.225); 
+  -o-transition-timing-function: cubic-bezier(0.890, -0.170, 0.140, 1.225); 
+  transition-timing-function: cubic-bezier(0.890, -0.170, 0.140, 1.225); /* custom */
+}
+
+.btn-slice .top  {
+	position: relative;
+	height: 6px;
+	overflow: hidden;
+  top: 0;
+  -webkit-transition: all 300ms cubic-bezier(1.000, 0, 0.025, 1); /* older webkit */
+  -webkit-transition: all 300ms cubic-bezier(1.000, -0.055, 0.025, 1.040); 
+  -moz-transition: all 300ms cubic-bezier(1.000, -0.055, 0.025, 1.040); 
+  -o-transition: all 300ms cubic-bezier(1.000, -0.055, 0.025, 1.040); 
+  transition: all 300ms cubic-bezier(1.000, -0.055, 0.025, 1.040); /* custom */
+
+  -webkit-transition-timing-function: cubic-bezier(1.000, 0, 0.025, 1); /* older webkit */
+  -webkit-transition-timing-function: cubic-bezier(1.000, -0.055, 0.025, 1.040); 
+  -moz-transition-timing-function: cubic-bezier(1.000, -0.055, 0.025, 1.040); 
+  -o-transition-timing-function: cubic-bezier(1.000, -0.055, 0.025, 1.040); 
+  transition-timing-function: cubic-bezier(1.000, -0.055, 0.025, 1.040); /* custom */
+  
+  -webkit-transition-delay:0.35s;     
+  -moz-transition-delay::0.35s; 
+  -ms-transition-delay::0.35s;     
+  -o-transition-delay::0.35s;     
+  transition-delay::0.35s;
+}
+
+.btn-slice .bottom  {
+	position: relative;
+	height: 6px;
+	overflow: hidden;
+  bottom: 0;
+  -webkit-transition: all 300ms cubic-bezier(1.000, 0, 0.025, 1); /* older webkit */
+  -webkit-transition: all 300ms cubic-bezier(1.000, -0.055, 0.025, 1.040); 
+  -moz-transition: all 300ms cubic-bezier(1.000, -0.055, 0.025, 1.040); 
+  -o-transition: all 300ms cubic-bezier(1.000, -0.055, 0.025, 1.040); 
+  transition: all 300ms cubic-bezier(1.000, -0.055, 0.025, 1.040); /* custom */
+
+  -webkit-transition-timing-function: cubic-bezier(1.000, 0, 0.025, 1); /* older webkit */
+  -webkit-transition-timing-function: cubic-bezier(1.000, -0.055, 0.025, 1.040); 
+  -moz-transition-timing-function: cubic-bezier(1.000, -0.055, 0.025, 1.040); 
+  -o-transition-timing-function: cubic-bezier(1.000, -0.055, 0.025, 1.040); 
+  transition-timing-function: cubic-bezier(1.000, -0.055, 0.025, 1.040); /* custom */
+  
+  -webkit-transition-delay:0.35s;     
+  -moz-transition-delay::0.35s; 
+  -ms-transition-delay::0.35s;     
+  -o-transition-delay::0.35s;     
+  transition-delay::0.35s;
+}
+
+.btn-slice .bottom span {
+  top: -6px;
+  position: absolute;
+  left: 0;
+}
+
+.btn-slice:hover .top {
+	top: -5px;
+  -webkit-transition-delay:0.35s;     
+  -moz-transition-delay::0.35s; 
+  -ms-transition-delay::0.35s;     
+  -o-transition-delay::0.35s;     
+  transition-delay::0.35s; 
+}
+
+.btn-slice:hover .bottom {
+	bottom: -5px;
+  -webkit-transition-delay:0.35s;     
+  -moz-transition-delay::0.35s; 
+  -ms-transition-delay::0.35s;     
+  -o-transition-delay::0.35s;     
+  transition-delay::0.35s; 
+}
+.btn-slice:hover, .btn-slice:focus, .btn-slice:active {
+	margin-left: 10px;
+}
+.btn-slice:before{
+	content: '';
+	height: 1px;
+	width: 60px;
+	background-color: #ffffff;
+	position: absolute;
+	margin-top: 6px;
+	right: -35px;
+  
+  -webkit-transition: all 1000ms cubic-bezier(0.890, 0, 0.140, 1); /* older webkit */
+  -webkit-transition: all 1000ms cubic-bezier(0.890, -0.170, 0.140, 1.225); 
+  -moz-transition: all 1000ms cubic-bezier(0.890, -0.170, 0.140, 1.225); 
+  -o-transition: all 1000ms cubic-bezier(0.890, -0.170, 0.140, 1.225); 
+  transition: all 1000ms cubic-bezier(0.890, -0.170, 0.140, 1.225); /* custom */
+
+  -webkit-transition-timing-function: cubic-bezier(0.890, 0, 0.140, 1); /* older webkit */
+  -webkit-transition-timing-function: cubic-bezier(0.890, -0.170, 0.140, 1.225); 
+  -moz-transition-timing-function: cubic-bezier(0.890, -0.170, 0.140, 1.225); 
+  -o-transition-timing-function: cubic-bezier(0.890, -0.170, 0.140, 1.225); 
+  transition-timing-function: cubic-bezier(0.890, -0.170, 0.140, 1.225); /* custom */
+}
+.btn-slice:hover:before{
+	width: 130%;
+}
+
+15.CSS mask button hover
+Html:
+  <div class="header">CSS-MASK BUTTON HOVER ANIMATION 
+		( Experimental )</div>
+    <div class="button-container-1">
+      <span class="mas">MASK1</span>
+    <button id='work' type="button" name="Hover">MASK1</button>
+  </div>
+
+  <div class="button-container-2">
+    <span class="mas">MASK2</span>
+  <button type="button" name="Hover">MASK2</button>
+</div>
+
+<div class="button-container-3">
+  <span class="mas">MASK3</span>
+<button type="button" name="Hover">MASK3</button>
+</div>
+
+<div class="footer">Inspired by <a href="https://tympanus.net/codrops/2016/09/29/transition-effect-with-css-masks/">this</a> codrops article</div>
+Css:
+* {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100');
+
+@mixin button($bcolor,
+$url,
+$x1,
+$y1,
+$bor,
+$col) {
+ background: $bcolor;
+ -webkit-mask: url($url);
+ mask: url($url);
+ -webkit-mask-size: $x1 $y1;
+ mask-size: $x1 $y1;
+ border: $bor;
+ color: $col;
+}
+
+.header {
+ text-align: center;
+ font-family: 'Roboto', sans-serif;
+ font-size: 34px;
+ margin-top: 12vh;
+}
+
+.footer {
+ text-align: center;
+ font-family: 'Lato', sans-serif;
+ font-weight: 300;
+ font-size: 20px;
+ margin-top: 15vh;
+}
+
+.button-container-1 {
+ position: relative;
+ width: 100px;
+ height: 50px;
+ margin-left: auto;
+ margin-right: auto;
+ margin-top: 6vh;
+ overflow: hidden;
+ border: 1px solid;
+ font-family: 'Lato', sans-serif;
+ font-weight: 300;
+ font-size: 20px;
+ transition: 0.5s;
+ letter-spacing: 1px;
+  border-radius: 8px;
+
+ button {
+  width: 101%;
+  height: 100%;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 1px;
+  font-weight: bold;
+
+  @include button(#000,
+  "https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png",
+  2300%,
+  100%,
+  none,
+  #fff);
+  cursor: pointer;
+  -webkit-animation: ani2 0.7s steps(22) forwards;
+  animation: ani2 0.7s steps(22) forwards;
+
+  &:hover {
+   -webkit-animation: ani 0.7s steps(22) forwards;
+   animation: ani 0.7s steps(22) forwards;
+  }
+ }
+}
+
+.button-container-2 {
+ position: relative;
+ width: 100px;
+ height: 50px;
+ margin-left: auto;
+ margin-right: auto;
+ margin-top: 7vh;
+ overflow: hidden;
+ border: 1px solid #000;
+ font-family: 'Lato', sans-serif;
+ font-weight: 300;
+ transition: 0.5s;
+ letter-spacing: 1px;
+ border-radius: 8px;
+
+ button {
+  width: 101%;
+  height: 100%;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 1px;
+  font-weight: bold;
+
+  @include button(#000, "https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/urban-sprite.png",
+  3000%,
+  100%,
+  none,
+  #fff);
+  cursor: pointer;
+  -webkit-animation: ani2 0.7s steps(29) forwards;
+  animation: ani2 0.7s steps(29) forwards;
+
+  &:hover {
+   -webkit-animation: ani 0.7s steps(29) forwards;
+   animation: ani 0.7s steps(29) forwards;
+  }
+ }
+}
+
+
+.mas {
+    position: absolute;
+    color: #000;
+    text-align: center;
+    width: 101%;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    position: absolute;
+    font-size: 11px;
+    margin-top: 17px;
+    overflow: hidden;
+	  font-weight: bold;
+
+}
+
+@-webkit-keyframes ani {
+ from {
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
+ }
+
+ to {
+  -webkit-mask-position: 100% 0;
+  mask-position: 100% 0;
+ }
+}
+
+@keyframes ani {
+ from {
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
+ }
+
+ to {
+  -webkit-mask-position: 100% 0;
+  mask-position: 100% 0;
+ }
+}
+
+@-webkit-keyframes ani2 {
+ from {
+  -webkit-mask-position: 100% 0;
+  mask-position: 100% 0;
+ }
+
+ to {
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
+ }
+}
+
+@keyframes ani2 {
+ from {
+  -webkit-mask-position: 100% 0;
+  mask-position: 100% 0;
+ }
+
+ to {
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
+ }
+}
+
+a{
+	color:#00ff95;
+}
+
+.button-container-3 {
+ position: relative;
+ width: 100px;
+ height: 50px;
+ margin-left: auto;
+ margin-right: auto;
+ margin-top: 8vh;
+ overflow: hidden;
+ border: 1px solid #000;
+ font-family: 'Lato', sans-serif;
+ font-weight: 300;
+ transition: 0.5s;
+ letter-spacing: 1px;
+ border-radius: 8px;
+
+ button {
+  width: 101%;
+  height: 100%;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 1px;
+  font-weight: bold;
+
+
+  @include button(#000, "https://raw.githubusercontent.com/pizza3/asset/master/natureSmaller.png",
+  7100%,
+  100%,
+  none,
+  #fff);
+  cursor: pointer;
+  -webkit-animation: ani2 0.7s steps(70) forwards;
+  animation: ani2 0.7s steps(70) forwards;
+
+  &:hover {
+   -webkit-animation: ani 0.7s steps(70) forwards;
+   animation: ani 0.7s steps(70) forwards;
+  }
+ }
+}
+
+
+16. CSS button reflection
+Html:
+<a href="https://codepen.io/Kyon-Jordan/full/xxNOmNJ">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  Click me to enter reality!
+Css:
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #050801;
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+}
+a {
+  position: relative;
+  display: inline-block;
+  padding: 25px 30px;
+  margin: 40px 0;
+  color: #03e9f4;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.5s;
+  letter-spacing: 4px;
+  overflow: hidden;
+  margin-right: 50px;
+}
+a:hover {
+  background: #03e9f4;
+  color: #050801;
+  box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
+    0 0 200px #03e9f4;
+  -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+a:nth-child(1) {
+  filter: hue-rotate(270deg);
+}
+a:nth-child(2) {
+  filter: hue-rotate(110deg);
+}
+a span {
+  position: absolute;
+  display: block;
+}
+a span:nth-child(1) {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #03e9f4);
+  animation: animate1 1s linear infinite;
+}
+@keyframes animate1 {
+  0% {
+    left: -100%;
+  }
+  50%,
+  100% {
+    left: 100%;
+  }
+}
+a span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #03e9f4);
+  animation: animate2 1s linear infinite;
+  animation-delay: 0.25s;
+}
+@keyframes animate2 {
+  0% {
+    top: -100%;
+  }
+  50%,
+  100% {
+    top: 100%;
+  }
+}
+a span:nth-child(3) {
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #03e9f4);
+  animation: animate3 1s linear infinite;
+  animation-delay: 0.5s;
+}
+@keyframes animate3 {
+  0% {
+    right: -100%;
+  }
+  50%,
+  100% {
+    right: 100%;
+  }
+}
+
+a span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #03e9f4);
+  animation: animate4 1s linear infinite;
+  animation-delay: 0.75s;
+}
+@keyframes animate4 {
+  0% {
+    bottom: -100%;
+  }
+  50%,
+  100% {
+    bottom: 100%;
+  }
+}
+
+
+17.Submit button
+Html:
+<button class="noselect">
+	<span>Submit</span>
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+      <path d="M0 11c2.761.575 6.312 1.688 9 3.438 3.157-4.23 8.828-8.187 15-11.438-5.861 5.775-10.711 12.328-14 18.917-2.651-3.766-5.547-7.271-10-10.917z"/>
+    </svg>
+	</button>
+Css:
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	height: 100vh;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #fff;
+}
+
+button {
+	width: 150px;
+	height: 50px;
+	background: none;
+	border: 4px solid #ff304f;
+	border-radius: 50px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: 100ms;
+}
+
+span,
+svg {
+	position: absolute;
+	color: #002651;
+	fill: transparent;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+  font-weight: bold;
+}
+
+button:focus {
+	outline: none;
+	border: 2px solid #1e2a78;
+	width: 50px;
+	border-left: 4px solid #1e2a78;
+	border-bottom: 4px solid #1e2a78;
+	animation: spin 2s 500ms forwards;
+}
+
+button:focus span {
+	color: transparent;
+}
+
+button:focus svg {
+	animation: check 500ms 2300ms forwards;
+}
+
+@keyframes spin {
+	80% {
+		border: 4px solid transparent;
+		border-left: 4px solid #303a52;
+	}
+	100% {
+		transform: rotate(1080deg);
+		border: 4px solid #303a52;
+	}
+}
+
+@keyframes check {
+	to {
+		fill: #17b978;
+	}
+}
+
+@keyframes circle {
+	to {
+		border: 4px solid #303a52;
+    color: blue;
+	}
+}
+18. Hover icons
+Html:
+<!-- HTML -->
+<button class="svg-button">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path  class="svg-path" fill-rule="evenodd" clip-rule="evenodd" d="M20.8067 7.62357L20.1842 6.54348C19.6577 5.62956 18.4907 5.31427 17.5755 5.83867C17.1399 6.0953 16.6201 6.16811 16.1307 6.04104C15.6413 5.91398 15.2226 5.59747 14.9668 5.16133C14.8023 4.8841 14.7139 4.56835 14.7105 4.24599C14.7254 3.72918 14.5304 3.22836 14.17 2.85762C13.8096 2.48689 13.3145 2.27782 12.7975 2.27803H11.5435C11.037 2.27803 10.5513 2.47987 10.194 2.8389C9.83669 3.19793 9.63717 3.68455 9.63961 4.19107C9.6246 5.23688 8.77248 6.07677 7.72657 6.07666C7.40421 6.07331 7.08846 5.9849 6.81123 5.82036C5.89606 5.29597 4.72911 5.61125 4.20254 6.52517L3.53435 7.62357C3.00841 8.53635 3.3194 9.70256 4.23 10.2323C4.8219 10.574 5.18653 11.2055 5.18653 11.889C5.18653 12.5725 4.8219 13.204 4.23 13.5458C3.32056 14.0719 3.00923 15.2353 3.53435 16.1453L4.16593 17.2346C4.41265 17.6797 4.8266 18.0082 5.31619 18.1474C5.80578 18.2865 6.33064 18.2249 6.77462 17.976C7.21108 17.7213 7.73119 17.6515 8.21934 17.7822C8.70749 17.9128 9.12324 18.233 9.37416 18.6716C9.5387 18.9488 9.62711 19.2646 9.63046 19.587C9.63046 20.6435 10.487 21.5 11.5435 21.5H12.7975C13.8505 21.5 14.7055 20.6491 14.7105 19.5961C14.7081 19.088 14.9089 18.6 15.2682 18.2407C15.6275 17.8814 16.1155 17.6806 16.6236 17.6831C16.9452 17.6917 17.2596 17.7797 17.5389 17.9394C18.4517 18.4653 19.6179 18.1543 20.1476 17.2437L20.8067 16.1453C21.0618 15.7075 21.1318 15.186 21.0012 14.6963C20.8706 14.2067 20.5502 13.7893 20.111 13.5366C19.6718 13.2839 19.3514 12.8665 19.2208 12.3769C19.0902 11.8873 19.1603 11.3658 19.4154 10.9279C19.5812 10.6383 19.8214 10.3982 20.111 10.2323C21.0161 9.70285 21.3264 8.54345 20.8067 7.63272V7.62357Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path  class="svg-path" d="M12.1751 14.5252C13.631 14.5252 14.8113 13.3449 14.8113 11.889C14.8113 10.4331 13.631 9.25285 12.1751 9.25285C10.7192 9.25285 9.53894 10.4331 9.53894 11.889C9.53894 13.3449 10.7192 14.5252 12.1751 14.5252Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</button>
+
+<button class="svg-button">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <path class="svg-path" d="M2.75012 3.24989L4.83012 3.60989L5.79312 15.0829C5.87012 16.0199 6.65312 16.7389 7.59312 16.7359H18.5021C19.3991 16.7379 20.1601 16.0779 20.2871 15.1899L21.2361 8.63189C21.3421 7.89889 20.8331 7.21889 20.1011 7.11289C20.0371 7.10389 5.16412 7.09889 5.16412 7.09889" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path class="svg-path" d="M14.1251 10.7948H16.8981" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path class="svg-path" fill-rule="evenodd" clip-rule="evenodd" d="M7.15441 20.2025C7.45541 20.2025 7.69841 20.4465 7.69841 20.7465C7.69841 21.0475 7.45541 21.2915 7.15441 21.2915C6.85341 21.2915 6.61041 21.0475 6.61041 20.7465C6.61041 20.4465 6.85341 20.2025 7.15441 20.2025Z" fill="black" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path class="svg-path" fill-rule="evenodd" clip-rule="evenodd" d="M18.4347 20.2025C18.7357 20.2025 18.9797 20.4465 18.9797 20.7465C18.9797 21.0475 18.7357 21.2915 18.4347 21.2915C18.1337 21.2915 17.8907 21.0475 17.8907 20.7465C17.8907 20.4465 18.1337 20.2025 18.4347 20.2025Z" fill="black" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+
+Css:
+/* CSS */
+.svg-button {
+  background-color: #ffffff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.svg-button:hover {
+  background-color: #f0f0f0;
+}
+
+.svg-path {
+  transition: stroke-width 0.3s;
+}
+
+.svg-button:hover .svg-path {
+  stroke-width: 2;
+}
+
+/* CSS */
+@keyframes draw {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.svg-path {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 0; /* Começa totalmente desenhado */
+}
+
+.svg-button:hover .svg-path {
+  animation: draw 500ms ease-in forwards;
+}
+
+
+19. grid template links
+Html:
+<main>  
+  <nav style="--count: 4;">
+    <ul>
+      <li style="--index: 1;">
+        <a href="#" target="_blank" rel="noreferrer noopener">
+          <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+</svg>
+Socials</span>
+        </a>
+      </li>
+      <li style="--index: 2;">
+        <a href="https://twitter.com/jh3yy" target="_blank" rel="noreferrer noopener">
+          <span>
+            <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Twitter</title><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+            Twitter
+          </span>
+        </a>
+      </li>
+      <li style="--index: 3;">
+        <a href="https://front-end.social/jhey" target="_blank" rel="noreferrer noopener">
+          <span>
+            <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Mastodon</title><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"/></svg>
+            Mastodon
+          </span>
+        </a>
+      </li>
+      <li style="--index: 4;">
+        <a href="https://codepen.io/jh3y" target="_blank" rel="noreferrer noopener">
+          <span>
+                <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>CodePen</title><path d="M18.144 13.067v-2.134L16.55 12zm1.276 1.194a.628.628 0 01-.006.083l-.005.028-.011.053-.01.031c-.005.016-.01.031-.017.047l-.014.03a.78.78 0 01-.021.043l-.019.03a.57.57 0 01-.08.1l-.026.025a.602.602 0 01-.036.03l-.029.022-.01.008-6.782 4.522a.637.637 0 01-.708 0L4.864 14.79l-.01-.008a.599.599 0 01-.065-.052l-.026-.025-.032-.034-.021-.028a.588.588 0 01-.067-.11l-.014-.031a.644.644 0 01-.017-.047l-.01-.03c-.004-.018-.008-.036-.01-.054l-.006-.028a.628.628 0 01-.006-.083V9.739c0-.028.002-.055.006-.083l.005-.027.011-.054.01-.03a.574.574 0 01.12-.217l.031-.034.026-.025a.62.62 0 01.065-.052l.01-.008 6.782-4.521a.638.638 0 01.708 0l6.782 4.521.01.008.03.022.035.03c.01.008.017.016.026.025a.545.545 0 01.08.1l.019.03a.633.633 0 01.021.043l.014.03c.007.016.012.032.017.047l.01.031c.004.018.008.036.01.054l.006.027a.619.619 0 01.006.083zM12 0C5.373 0 0 5.372 0 12 0 18.627 5.373 24 12 24c6.628 0 12-5.372 12-12 0-6.627-5.372-12-12-12m0 10.492L9.745 12 12 13.51 14.255 12zm.638 4.124v2.975l4.996-3.33-2.232-1.493zm-6.272-.356l4.996 3.33v-2.974l-2.764-1.849zm11.268-4.52l-4.996-3.33v2.974l2.764 1.85zm-6.272-.356V6.41L6.366 9.74l2.232 1.493zm-5.506 1.549v2.134L7.45 12Z"/></svg>
+            CodePen
+          </span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</main>
+
+
+Css:
+@import url(https://unpkg.com/open-props/open-props.min.css);
+  @import url(https://unpkg.com/open-props/normalize.min.css);
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  background: var(--gray-12);
+}
+
+ul {
+  padding: 0;
+  display: inline-grid;
+  grid-auto-flow: column;
+  list-style-type: none;
+  grid-template-columns: auto repeat(3, calc((var(--active, 0) * 130px) + 10px));
+  transition: grid-template-columns 0.35s var(--ease-elastic-1);
+}
+
+main {
+  width: 66ch;
+}
+
+li {
+  display: grid;
+  justify-content: end;
+  z-index: calc(var(--count) - var(--index));
+}
+
+nav {
+  position: relative;
+}
+
+nav > button {
+  position: absolute;
+  left: 0;
+  background: red;
+  z-index: var(--count);
+}
+
+a {
+  background: hsl(0 0% 60% / 0.18);
+  display: inline-block;
+  padding: var(--size-2) var(--size-4);
+  border-radius: var(--radius-5);
+  margin: 0;
+  color: var(--gray-0);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-0);
+  backdrop-filter: blur(40px);
+  transition: color 0.2s, background 0.2s;  
+}
+
+a:visited {
+  color: var(--gray-0);
+}
+
+svg {
+  height: 24px;
+  aspect-ratio: 1;
+  fill: currentColor;
+}
+
+span {
+  display: grid;
+  align-items: center;
+  grid-auto-flow: column;
+  grid-template-columns: 16px 1fr;
+  gap: 0.25rem;
+}
+
+li:is(
+  :nth-of-type(2),
+  :nth-of-type(3),
+  :nth-of-type(4)
+) span {
+  opacity: var(--active, 0);
+}
+
+li:is(
+  :nth-of-type(2),
+  :nth-of-type(3),
+  :nth-of-type(4)
+) a:is(:hover, :focus) {
+  background: var(--gray-0);
+  color: var(--gray-12);
+}
+
+a:focus-visible {
+  outline-color: transparent;
+}
+
+ul:is(:focus-within, :hover) {
+  --active: 1;
+}
+20. Bubblu button
+Html:
+<button class="bubbly-button">Click me!</button>
+Css:
+$fuschia: #ff0081;
+$button-bg: $fuschia;
+$button-text-color: #fff;
+$baby-blue: #f8faff;
+
+body{
+  font-size: 16px;
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  text-align: center;
+  background-color: $baby-blue;
+}
+.bubbly-button{
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  display: inline-block;
+  font-size: 1em;
+  padding: 1em 2em;
+  margin-top: 100px;
+  margin-bottom: 60px;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: $button-bg;
+  color: $button-text-color;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.5);
+  
+  &:focus {
+    outline: 0;
+  }
+  
+  &:before, &:after{
+    position: absolute;
+    content: '';
+    display: block;
+    width: 140%;
+    height: 100%;
+    left: -20%;
+    z-index: -1000;
+    transition: all ease-in-out 0.5s;
+    background-repeat: no-repeat;
+  }
+  
+  &:before{
+    display: none;
+    top: -75%;
+    background-image:  
+      radial-gradient(circle, $button-bg 20%, transparent 20%),
+    radial-gradient(circle,  transparent 20%, $button-bg 20%, transparent 30%),
+    radial-gradient(circle, $button-bg 20%, transparent 20%), 
+    radial-gradient(circle, $button-bg 20%, transparent 20%),
+    radial-gradient(circle,  transparent 10%, $button-bg 15%, transparent 20%),
+    radial-gradient(circle, $button-bg 20%, transparent 20%),
+    radial-gradient(circle, $button-bg 20%, transparent 20%),
+    radial-gradient(circle, $button-bg 20%, transparent 20%),
+    radial-gradient(circle, $button-bg 20%, transparent 20%);
+  background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%;
+  //background-position: 0% 80%, -5% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 85% 30%;
+  }
+  
+  &:after{
+    display: none;
+    bottom: -75%;
+    background-image:  
+    radial-gradient(circle, $button-bg 20%, transparent 20%), 
+    radial-gradient(circle, $button-bg 20%, transparent 20%),
+    radial-gradient(circle,  transparent 10%, $button-bg 15%, transparent 20%),
+    radial-gradient(circle, $button-bg 20%, transparent 20%),
+    radial-gradient(circle, $button-bg 20%, transparent 20%),
+    radial-gradient(circle, $button-bg 20%, transparent 20%),
+    radial-gradient(circle, $button-bg 20%, transparent 20%);
+  background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 10% 10%, 20% 20%;
+  //background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%;
+  }
+ 
+  &:active{
+    transform: scale(0.9);
+    background-color: darken($button-bg, 5%);
+    box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
+  }
+  
+  &.animate{
+    &:before{
+      display: block;
+      animation: topBubbles ease-in-out 0.75s forwards;
+    }
+    &:after{
+      display: block;
+      animation: bottomBubbles ease-in-out 0.75s forwards;
+    }
+  }
+}
+
+
+@keyframes topBubbles {
+  0%{
+    background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%;
+  }
+    50% {
+      background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 90% 30%;}
+ 100% {
+    background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%, 90% 20%;
+  background-size: 0% 0%, 0% 0%,  0% 0%,  0% 0%,  0% 0%,  0% 0%;
+  }
+}
+
+@keyframes bottomBubbles {
+  0%{
+    background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%, 70% -10%, 70% 0%;
+  }
+  50% {
+    background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%, 105% 0%;}
+ 100% {
+    background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%, 110% 10%;
+  background-size: 0% 0%, 0% 0%,  0% 0%,  0% 0%,  0% 0%,  0% 0%;
+  }
+}
+Js:
+var animateButton = function(e) {
+
+  e.preventDefault;
+  //reset animation
+  e.target.classList.remove('animate');
+  
+  e.target.classList.add('animate');
+  setTimeout(function(){
+    e.target.classList.remove('animate');
+  },700);
+};
+
+var bubblyButtons = document.getElementsByClassName("bubbly-button");
+
+for (var i = 0; i < bubblyButtons.length; i++) {
+  bubblyButtons[i].addEventListener('click', animateButton, false);
+}
+
+21. Hover glow effect
+Html:
+<button class="glow-on-hover" type="button">HOVER ME, THEN CLICK ME!</button>
+
+Css:
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+}
+
+.glow-on-hover {
+    width: 220px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+22. Button No 445
+Html:
+<div class="container">
+    <div class="center">
+      <button class="btn">
+        <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
+          <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
+          <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
+        </svg>
+        <span>HOVER ME</span>
+      </button>
+    </div>
+  </div>
+
+Css:
+@import url('https://fonts.googleapis.com/css?family=Lato:100&display=swap');
+
+body, html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #5CA4EA;
+  overflow: hidden;
+  font-family: 'Lato', sans-serif;
+}
+
+.container {
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center {
+  width: 180px;
+  height: 60px;
+  position: absolute;
+}
+
+.btn {
+  width: 180px;
+  height: 60px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid #91C9FF;
+  outline: none;
+  transition: 1s ease-in-out;
+}
+
+svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  fill: none;
+  stroke: #fff;
+  stroke-dasharray: 150 480;
+  stroke-dashoffset: 150;
+  transition: 1s ease-in-out;
+}
+
+.btn:hover {
+  transition: 1s ease-in-out;
+  background: #4F95DA;
+}
+
+.btn:hover svg {
+  stroke-dashoffset: -480;
+}
+
+.btn span {
+  color: white;
+  font-size: 18px;
+  font-weight: 100;
+}
+
+23. Button hover collection
+Html:
+<section class="buttons">
+    <h1>Button Hover Effects</h1>
+  <div class="container">
+    
+    <a href="https://twitter.com/Dave_Conner" class="btn btn-1">
+      <svg>
+        <rect x="0" y="0" fill="none" width="100%" height="100%"/>
+      </svg>
+     Hover
+    </a>
+    <!--svg hover inspired by https://codepen.io/karimbalaa/pen/qERbBY?editors=110 -->
+    <!--End of Button 1 -->
+    
+    <a href="https://twitter.com/Dave_Conner" class="btn btn-2">Hover</a> 
+    <!--End of Button 2 -->
+    
+    <a href="https://twitter.com/Dave_Conner" class="btn btn-3">Hover</a> 
+    <!--End of Button 3 -->
+    
+    <a href="https://twitter.com/Dave_Conner" class="btn btn-4"><span>Hover</span></a> 
+    <!--End of Button 4 -->
+    
+    <a href="https://twitter.com/Dave_Conner" class="btn btn-5">Hover</a> 
+    <!--End of Button 5 -->
+    
+    
+  </div>
+  <p>Follow on <a href="https://twitter.com/Dave_Conner" target="_blank">Twitter</a></p>
+</section>
+
+Scss:
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,900);
+
+//colors
+$red: #E1332D;
+$white: #fff;
+
+//base styles
+
+* {
+  box-sizing: inherit;
+  transition-property: all;
+  transition-duration: .6s;
+  transition-timing-function: ease;
+}
+
+html,
+body {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background: $red;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+// Main wrap
+.buttons {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+// Button wrap
+.container { 
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1em;
+    text-align: center; 
+    
+    @media (min-width: 600px) {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+h1 {
+  color: $white;
+  font-size: 1.25em;
+  font-weight: 900;
+  margin: 0 0 2em;
+  
+  @media (min-width: 450px) {
+    font-size: 1.75em;
+  }
+  
+  @media (min-width: 760px) {
+    font-size: 3.25em;
+  }
+  
+  @media (min-width: 900px) {
+    font-size: 5.25em;
+    margin: 0 0 1em;
+  }
+}
+
+p {
+  color: $white;
+  font-size: 12px;
+  
+  @media(min-width: 600px) {
+    left: 50%;
+    position: absolute; 
+    transform: translate(-50%, 0);
+    top: 90%;
+  }
+  
+  @media(max-height: 500px) {
+    left: 0;
+    position: relative;
+    top: 0;
+    transform: translate(0, 0);
+  }
+  
+  a {
+    background: rgba($white, 0);
+    border-bottom: 1px solid;
+    color: $white;
+    line-height: 1.4;
+    padding: .25em;
+    text-decoration: none;
+    
+    &:hover {
+      background: rgba($white, 1);
+      color: $red;
+    }
+  }
+}
+//button styles
+
+
+//default button
+.btn {
+  color: #fff;
+  cursor: pointer;
+  // display: block;
+  font-size:16px;
+  font-weight: 400;
+  line-height: 45px;
+  margin: 0 0 2em;
+  max-width: 160px; 
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 100%; 
+  
+//   @media(min-width: 400px) {
+//     display: inline-block;
+//     margin-right: 2.5em;
+  
+//     &:nth-of-type(even) {
+//       margin-right: 0;
+//     }
+//   }
+  
+  @media(min-width: 600px) {
+      
+    margin: 0 1em 2em;
+  
+//     &:nth-of-type(even) {
+//       margin-right: 2.5em;
+//     }
+    
+//     &:nth-of-type(5) {
+//       margin-right: 0;
+//     }
+    
+  }
+  
+  &:hover { text-decoration: none; }
+  
+}
+
+/////////////////////////////////
+//button one
+///////////////////////////////
+.btn-1 {
+  background: darken($red, 1.5%);
+  font-weight: 100;
+  
+  svg {
+    height: 45px;
+    left: 0;
+    position: absolute;
+    top: 0; 
+    width: 100%; 
+  }
+  
+  rect {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
+    stroke-dasharray: 422, 0;
+    transition: all 0.35s linear;
+  }
+}
+
+.btn-1:hover {
+  background: rgba($red, 0);
+  font-weight: 900;
+  letter-spacing: 1px;
+  
+  rect {
+    stroke-width: 5;
+    stroke-dasharray: 15, 310;
+    stroke-dashoffset: 48;
+    transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+}
+
+////////////////////////////
+//button two
+//////////////////////////
+.btn-2 {
+    letter-spacing: 0;
+}
+
+.btn-2:hover,
+.btn-2:active {
+  letter-spacing: 5px;
+}
+
+.btn-2:after,
+.btn-2:before {
+  backface-visibility: hidden;
+  border: 1px solid rgba(#fff, 0);
+  bottom: 0px;
+  content: " ";
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  transition: all 280ms ease-in-out;
+  width: 0;
+}
+
+.btn-2:hover:after,
+.btn-2:hover:before {
+  backface-visibility: hidden;
+  border-color: #fff;
+  transition: width 350ms ease-in-out;
+  width: 70%;
+}
+
+.btn-2:hover:before {
+  bottom: auto;
+  top: 0;
+  width: 70%;
+}
+
+/////////////////////////////
+//button -3 
+///////////////////////////
+.btn-3 {
+  background: lighten($red, 3%);  
+  border: 1px solid darken($red, 4%);
+  box-shadow: 0px 2px 0 darken($red, 5%), 2px 4px 6px darken($red, 2%);
+  font-weight: 900;
+  letter-spacing: 1px;
+  transition: all 150ms linear;
+}
+
+.btn-3:hover {
+  background: darken($red, 1.5%);
+  border: 1px solid rgba(#000, .05);
+  box-shadow: 1px 1px 2px rgba(#fff, .2);
+  color: lighten($red, 18%); 
+  text-decoration: none;
+  text-shadow: -1px -1px 0 darken($red, 9.5%);
+  transition: all 250ms linear;
+}
+
+/////////////////////////////
+//button-4 
+///////////////////////////
+.btn-4 {
+  border: 1px solid;
+  overflow: hidden;
+  position: relative;
+  
+  span {
+    z-index: 20;
+  }
+  
+  &:after {
+    background: #fff;
+    content: "";
+    height: 155px;
+    left: -75px;
+    opacity: .2;
+    position: absolute;
+    top: -50px;
+    transform: rotate(35deg);
+    transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+    width: 50px;
+    z-index: -10;
+  }
+}
+
+.btn-4:hover {
+  
+  &:after {
+    left: 120%;
+    transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+  }
+}
+
+/////////////////////////////
+//button-5 
+///////////////////////////
+.btn-5 {
+  border: 0 solid;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);
+  outline: 1px solid;
+  outline-color: rgba(255, 255, 255, .5);
+  outline-offset: 0px;
+  text-shadow: none;
+  transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+} 
+
+.btn-5:hover {
+  border: 1px solid;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
+  outline-color: rgba(255, 255, 255, 0);
+  outline-offset: 15px;
+  text-shadow: 1px 1px 2px #427388; 
+}
+
+24. Css buton hover next
+Html:
+<!-- designed by me... enjoy! -->
+<div class="wrapper">
+  <a class="cta" href="#">
+    <span>NEXT</span>
+    <span>
+      <svg width="66px" height="43px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <g id="arrow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <path class="one" d="M40.1543933,3.89485454 L43.9763149,0.139296592 C44.1708311,-0.0518420739 44.4826329,-0.0518571125 44.6771675,0.139262789 L65.6916134,20.7848311 C66.0855801,21.1718824 66.0911863,21.8050225 65.704135,22.1989893 C65.7000188,22.2031791 65.6958657,22.2073326 65.6916762,22.2114492 L44.677098,42.8607841 C44.4825957,43.0519059 44.1708242,43.0519358 43.9762853,42.8608513 L40.1545186,39.1069479 C39.9575152,38.9134427 39.9546793,38.5968729 40.1481845,38.3998695 C40.1502893,38.3977268 40.1524132,38.395603 40.1545562,38.3934985 L56.9937789,21.8567812 C57.1908028,21.6632968 57.193672,21.3467273 57.0001876,21.1497035 C56.9980647,21.1475418 56.9959223,21.1453995 56.9937605,21.1432767 L40.1545208,4.60825197 C39.9574869,4.41477773 39.9546013,4.09820839 40.1480756,3.90117456 C40.1501626,3.89904911 40.1522686,3.89694235 40.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+          <path class="two" d="M20.1543933,3.89485454 L23.9763149,0.139296592 C24.1708311,-0.0518420739 24.4826329,-0.0518571125 24.6771675,0.139262789 L45.6916134,20.7848311 C46.0855801,21.1718824 46.0911863,21.8050225 45.704135,22.1989893 C45.7000188,22.2031791 45.6958657,22.2073326 45.6916762,22.2114492 L24.677098,42.8607841 C24.4825957,43.0519059 24.1708242,43.0519358 23.9762853,42.8608513 L20.1545186,39.1069479 C19.9575152,38.9134427 19.9546793,38.5968729 20.1481845,38.3998695 C20.1502893,38.3977268 20.1524132,38.395603 20.1545562,38.3934985 L36.9937789,21.8567812 C37.1908028,21.6632968 37.193672,21.3467273 37.0001876,21.1497035 C36.9980647,21.1475418 36.9959223,21.1453995 36.9937605,21.1432767 L20.1545208,4.60825197 C19.9574869,4.41477773 19.9546013,4.09820839 20.1480756,3.90117456 C20.1501626,3.89904911 20.1522686,3.89694235 20.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+          <path class="three" d="M0.154393339,3.89485454 L3.97631488,0.139296592 C4.17083111,-0.0518420739 4.48263286,-0.0518571125 4.67716753,0.139262789 L25.6916134,20.7848311 C26.0855801,21.1718824 26.0911863,21.8050225 25.704135,22.1989893 C25.7000188,22.2031791 25.6958657,22.2073326 25.6916762,22.2114492 L4.67709797,42.8607841 C4.48259567,43.0519059 4.17082418,43.0519358 3.97628526,42.8608513 L0.154518591,39.1069479 C-0.0424848215,38.9134427 -0.0453206733,38.5968729 0.148184538,38.3998695 C0.150289256,38.3977268 0.152413239,38.395603 0.154556228,38.3934985 L16.9937789,21.8567812 C17.1908028,21.6632968 17.193672,21.3467273 17.0001876,21.1497035 C16.9980647,21.1475418 16.9959223,21.1453995 16.9937605,21.1432767 L0.15452076,4.60825197 C-0.0425130651,4.41477773 -0.0453986756,4.09820839 0.148075568,3.90117456 C0.150162624,3.89904911 0.152268631,3.89694235 0.154393339,3.89485454 Z" fill="#FFFFFF"></path>
+        </g>
+      </svg>
+    </span> 
+  </a>
+</div>
+
+
+Css:
+@import url('https://fonts.googleapis.com/css?family=Poppins:900i');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.cta {
+    display: flex;
+    padding: 10px 45px;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 40px;
+    color: white;
+    background: #6225E6;
+    transition: 1s;
+    box-shadow: 6px 6px 0 black;
+    transform: skewX(-15deg);
+}
+
+.cta:focus {
+   outline: none; 
+}
+
+.cta:hover {
+    transition: 0.5s;
+    box-shadow: 10px 10px 0 #FBC638;
+}
+
+.cta span:nth-child(2) {
+    transition: 0.5s;
+    margin-right: 0px;
+}
+
+.cta:hover  span:nth-child(2) {
+    transition: 0.5s;
+    margin-right: 45px;
+}
+
+  span {
+    transform: skewX(15deg) 
+  }
+
+  span:nth-child(2) {
+    width: 20px;
+    margin-left: 30px;
+    position: relative;
+    top: 12%;
+  }
+  
+/**************SVG****************/
+
+path.one {
+    transition: 0.4s;
+    transform: translateX(-60%);
+}
+
+path.two {
+    transition: 0.5s;
+    transform: translateX(-30%);
+}
+
+.cta:hover path.three {
+    animation: color_anim 1s infinite 0.2s;
+}
+
+.cta:hover path.one {
+    transform: translateX(0%);
+    animation: color_anim 1s infinite 0.6s;
+}
+
+.cta:hover path.two {
+    transform: translateX(0%);
+    animation: color_anim 1s infinite 0.4s;
+}
+
+/* SVG animations */
+
+@keyframes color_anim {
+    0% {
+        fill: white;
+    }
+    50% {
+        fill: #FBC638;
+    }
+    100% {
+        fill: white;
+    }
+}
+
+25. button hover effects
+Html:
+<div class="centerer">
+  <h1>Just Some More</h1>
+  <h1>Button Hover Effects</h1>
+  <h4>By: <a href="http://kylebrumm.com" target="_blank">Kyle Brumm</a></h4>
+
+  <div class="wrap">
+    <a class="btn-0" href="#">Swipe</a>
+    <a class="btn-1" href="#">Diagonal Swipe</a>
+    <a class="btn-1-2" href="#">Double Swipe</a>
+    <a class="btn-2" href="#">Diagonal Close</a>
+    <a class="btn-3" href="#"><span>Zoning In</span></a>
+    <a class="btn-4" href="#"><span>4 Corners</span></a>
+    <a class="btn-5" href="#">Slice</a>
+  </div>
+  <div class="wrap">
+    <a class="btn-6" href="#">Position Aware<span></span></a>
+    <a class="btn-7" href="#"><span>Alternate</span></a>
+    <a class="btn-8" href="#">Smoosh</a>
+    <a class="btn-9" href="#"><span>Vertical Overlap</span></a>
+    <a class="btn-10" href="#"><span>Horizontal Overlap</span></a>
+    <a class="btn-11" href="#">Collision</a>
+  </div>
+</div>
+
+Scss:
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400|Raleway:300);
+
+$btn-width: 250px !default;
+$btn-height: 80px !default;
+$btn-full: $btn-height+$btn-width !default;
+$btn-half: $btn-full/2 !default;
+$bg-color: #eeeeee !default;
+
+html {
+  padding-top: 50px;
+  font-family: 'Open Sans', Helvetica, arial, sans-serif;
+  text-align: center;
+  background-color: $bg-color;
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+    transition: 0.5s ease-in-out;
+  }
+
+  i,em,
+  b,strong,
+  span {
+    transition: none;
+  }
+}
+
+*:before,
+*:after {
+  z-index: -1;
+}
+
+h1,
+h4 {
+  font-family: 'Raleway', 'Open Sans', sans-serif;
+  margin: 0;
+  line-height: 1;
+}
+
+a {
+  text-decoration: none;
+  line-height: $btn-height;
+  color: black;
+}
+
+.centerer {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 1rem
+}
+
+@media (min-width: 600px) {
+  .wrap {
+    width: 50%;
+    float: left;
+  }
+}
+
+[class^="btn-"] {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  @include size(100%, $btn-height);
+  max-width: $btn-width;
+  margin: 1rem auto;
+  text-transform: uppercase;
+  border: 1px solid currentColor;
+}
+
+.btn-0 {
+  $btn-color: random-color($max:200);
+  $btn-color-dark: shade($btn-color, 40%);
+  color: tint($btn-color);
+
+  &:before {
+    content: '';
+    @include absolute(0,0,0,0);
+    background-color: $btn-color-dark;
+    transform: translateX(-100%);
+  }
+
+  &:hover {
+    color: tint($btn-color, 75%);
+
+    &:before {
+      transform: translateX(0);
+    }
+  }
+}
+
+.btn-1 {
+  $btn-color: random-color($max:200);
+  $btn-color-dark: shade($btn-color, 40%);
+  color: tint($btn-color);
+  
+  &:before {
+    content: '';
+    @include absolute(0,-50px,0,0);
+    border-right: 50px solid transparent;
+    border-bottom: $btn-height solid $btn-color-dark;
+    transform: translateX(-100%);
+  }
+
+  &:hover {
+    color: tint($btn-color, 75%);
+
+    &:before {
+      transform: translateX(0);
+    }
+  }
+}
+
+.btn-1-2 {
+  $btn-color: random-color($max:200);
+  $btn-color-dark: shade($btn-color, 40%);
+  color: tint($btn-color);
+  
+  &:before,
+  &:after {
+    content: '';
+    @include absolute(0,0,0,0);
+    border-bottom: $btn-height solid $btn-color-dark;
+  }
+  
+  &:before {
+    right: -50px;
+    border-right: 50px solid transparent;
+    transform: translateX(-100%);
+  }
+  
+  &:after {
+    left: -50px;
+    border-left: 50px solid transparent;
+    transform: translateX(100%);
+  }
+
+  &:hover {
+    color: tint($btn-color, 75%);
+
+    &:before { transform: translateX(-40%); }
+    &:after { transform: translateX(40%); }
+  }
+}
+
+.btn-2 {
+  $btn-color: random-color($max:200);
+  $btn-color-dark: shade($btn-color, 40%);
+  color: tint($btn-color);
+  
+  &:before,
+  &:after {
+    content: '';
+    @include absolute(0,0,0,0);
+  }
+
+  &:before {
+    right: -50px;
+    border-right: 50px solid transparent;
+    border-bottom: $btn-height solid $btn-color-dark;
+    transform: translateX(-100%);
+  }
+  
+  &:after {
+    left: -50px;
+    border-left: 50px solid transparent;
+    border-top: $btn-height solid $btn-color-dark;
+    transform: translateX(100%);
+  }
+
+  &:hover {
+    color: tint($btn-color, 75%);
+
+    &:before { transform: translateX(-49%); }
+    &:after { transform: translateX(49%); }
+  }
+}
+
+.btn-3 {
+  $btn-color: random-color($max:200);
+  $btn-color-dark: shade($btn-color, 40%);
+
+  &:before,
+  &:after {
+    content: '';
+    @include absolute(0,0,0,0);
+    border-top: $btn-height/2 solid $btn-color-dark;
+    border-bottom: $btn-height/2 solid $btn-color-dark;
+  }
+  
+  &:before {
+    border-right: $btn-height/2 solid transparent;
+    transform: translateX(-100%);
+  }
+
+  &:after {
+    border-left: $btn-height/2 solid transparent;
+    transform: translateX(100%);
+  }
+
+  &:hover {
+    color: tint($btn-color, 75%);
+    
+    &:before { transform: translateX(-30%); }    
+    &:after { transform: translateX(30%); }
+  }
+}
+
+.btn-4 {
+  $btn-color: random-color($max:200);
+  $btn-color-dark: shade($btn-color, 40%);
+  color: tint($btn-color);
+  
+  &:before,
+  &:after,
+  span:before,
+  span:after {
+    content: '';
+    @include absolute(0,0,0,0);
+    background-color: $btn-color-dark;
+  }
+  
+  &:before { transform: translate(-100%, -100%); }
+  &:after { transform: translate(-100%, 100%); }
+  span:before { transform: translate(100%, -100%); }
+  span:after { transform: translate(100%, 100%); }
+  
+  &:hover {
+    color: tint($btn-color, 75%);
+
+    &:before { transform: translate(-50%, -50%); }
+    &:after { transform: translate(-50%, 50%); }
+    span:before { transform: translate(50%, -50%); }
+    span:after { transform: translate(50%, 50%); }
+  }
+}
+
+.btn-5 {
+  $btn-color: random-color($max:200);
+  $btn-color-dark: shade($btn-color, 40%);
+  color: tint($btn-color);
+  @include triangle(up-right, 0, $btn-color-dark, true);
+  @include triangle(down-left, 0, $btn-color-dark, true, before);
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 0 solid;
+    transform: rotate(360deg);
+  }
+  
+  &:before {
+    bottom: 0;
+    left: 0;
+    border-color: transparent transparent transparent $btn-color-dark;
+  }
+
+  &:after {
+    top: 0;
+    right: 0;
+    border-color: transparent $btn-color-dark transparent transparent;
+  }
+
+  &:hover {
+    color: tint($btn-color, 75%);
+    
+    &:before,
+    &:after {
+      border-width: $btn-height $btn-width*1.05;
+    }
+  }
+}
+
+.btn-6 {
+  $btn-color: random-color($max:200);
+  $btn-color-dark: shade($btn-color, 40%);
+  color: tint($btn-color);
+  
+  span {
+    @include absolute();
+    display: block;
+    @include size(0);
+    border-radius: 50%;
+    background-color: $btn-color-dark;
+    transition: width 0.4s ease-in-out, height 0.4s ease-in-out;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+  }
+  
+  &:hover {
+    color: tint($btn-color, 75%);
+    
+    span {
+      @include size(225%, $btn-width*2.25);
+    }
+  }
+  
+  &:active {
+    background-color: $btn-color;
+  }
+}
+
+.btn-7 {
+  $btn-color: random-color($max:200);
+  $btn-color-dark: shade($btn-color, 40%);
+  color: tint($btn-color);
+  
+  &:before,
+  &:after,
+  span:before,
+  span:after {
+    content: '';
+    @include absolute(0);
+    @include size(25.25%, 0);
+    background-color: $btn-color-dark;
+  }
+  
+  &:before { left: 0; }
+  &:after { left: 50%; }
+  
+  span {
+    &:before,
+    &:after {
+      top: auto;
+      bottom: 0;
+    }
+    
+    &:before { left: 25%; }
+    &:after { left: 75%; }
+  }
+  
+  &:hover {
+    color: tint($btn-color, 75%);
+    
+    &:before,
+    &:after,
+    span:before,
+    span:after {
+      height: $btn-height;
+    }
+  }
+}
+
+.btn-8 {
+  $btn-color: random-color($max:200);
+  $btn-color-dark: shade($btn-color, 40%);
+  color: tint($btn-color);
+  
+  &:before,
+  &:after {
+    content: '';
+    @include absolute(0,0,0,0);
+    background-color: $btn-color-dark;
+  }
+  
+  &:before { transform: translateY(-100%); }
+  &:after { transform: translateY(100%); }
+  
+  &:hover {
+    color: tint($btn-color, 75%);
+    
+    &:before { transform: translateY(-50%); }
+    &:after { transform: translateY(50%); }
+  }
+}
+
+.btn-9 {
+  $btn-color: random-color($max:200);
+  $btn-color-dark: shade($btn-color, 40%);
+  color: tint($btn-color);
+  
+  &:before,
+  &:after,
+  span:before,
+  span:after {
+    content: '';
+    @include absolute(0,null,null,0);
+    @include size(100%, 0);
+    background-color: rgba($btn-color-dark, 0.25);
+    transition: 0.4s ease-in-out;
+  }
+  
+  &:after,
+  span:before {
+    top: auto;
+    bottom: 0;
+  }
+  
+  span:before,
+  span:after {
+    transition-delay: 0.4s;
+  }
+  
+  &:hover {
+    color: tint($btn-color, 75%);
+    
+    &:before,
+    &:after,
+    span:before,
+    span:after {
+      height: $btn-height;
+    }
+  }
+  
+  &:active {
+    background-color: $btn-color;
+  }
+}
+
+.btn-10 {
+  $btn-color: random-color($max:200);
+  $btn-color-dark: shade($btn-color, 40%);
+  color: tint($btn-color);
+  
+  &:before,
+  &:after,
+  span:before,
+  span:after {
+    content: '';
+    @include absolute(0,null,null,0);
+    @include size(0, $btn-height);
+    background-color: rgba($btn-color-dark, 0.25);
+    transition: 0.4s;
+  }
+  
+  &:after,
+  span:before {
+    left: auto;
+    right: 0;
+  }
+  
+  span:before,
+  span:after {
+    transition-delay: 0.4s;
+  }
+  
+  &:hover {
+    color: tint($btn-color, 75%);
+    
+    &:before,
+    &:after,
+    span:before,
+    span:after {
+      width: $btn-width;
+    }
+  }
+  
+  &:active {
+    background-color: $btn-color;
+  }
+}
+
+@keyframes criss-cross-left {
+  0% {
+    left: -20px;
+  }
+  50% {
+    left: 50%;
+    @include size(20px);
+  }
+  100% {
+    left: 50%;
+    @include size($btn-width*1.5);
+  }
+}
+
+@keyframes criss-cross-right {
+  0% {
+    right: -20px;
+  }
+  50% {
+    right: 50%;
+    @include size(20px);
+  }
+  100% {
+    right: 50%;
+    @include size($btn-width*1.5);
+  }
+}
+
+.btn-11 {
+  position: relative;
+  $btn-color: random-color($max:200);
+  $btn-color-dark: shade($btn-color, 40%);
+  color: tint($btn-color);
+  
+  &:before,
+  &:after {
+    @include absolute(50%);
+    content: '';
+    @include size(20px);
+    background-color: $btn-color;
+    border-radius: 50%;
+  }
+  
+  &:before {
+    left: -20px;
+    transform: translate(-50%, -50%);
+    // animation: criss-cross-left 0.8s reverse;
+  }
+  
+  &:after {
+    right: -20px;
+    transform: translate(50%, -50%);
+    // animation: criss-cross-right 0.8s reverse;
+  }
+  
+  &:hover {
+    color: tint($btn-color, 75%);
+
+    &:before,
+    &:after {
+      // @include size($btn-width);
+    }
+    
+    &:before {
+      animation: criss-cross-left 0.8s both;
+      animation-direction: alternate;
+    }
+    
+    &:after {
+      animation: criss-cross-right 0.8s both;
+      animation-direction: alternate;
+    }
+  }
+}
+Js:
+$(function() {  
+  $('.btn-6')
+    .on('mouseenter', function(e) {
+      var parentOffset = $(this).offset(),
+          relX = e.pageX - parentOffset.left,
+          relY = e.pageY - parentOffset.top;
+      $(this).find('span').css({top:relY, left:relX})
+    })
+    .on('mouseout', function(e) {
+      var parentOffset = $(this).offset(),
+          relX = e.pageX - parentOffset.left,
+          relY = e.pageY - parentOffset.top;
+      $(this).find('span').css({top:relY, left:relX})
+    });
+});
+
+26. Button bubble effect
+Html:
+<div>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="goo">
+  <defs>
+    <filter id="goo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+      <feComposite in="SourceGraphic" in2="goo"/>
+    </filter>
+  </defs>
+</svg>
+
+<span class="button--bubble__container">
+  <a href="#campaign" class="button button--bubble">
+    Hover me
+  </a>
+  <span class="button--bubble__effect-container">
+    <span class="circle top-left"></span>
+    <span class="circle top-left"></span>
+    <span class="circle top-left"></span>
+
+    <span class="button effect-button"></span>
+
+    <span class="circle bottom-right"></span>
+    <span class="circle bottom-right"></span>
+    <span class="circle bottom-right"></span>
+  </span>
+</span>
+</div>
+
+Scss:
+$dark-blue: #222;
+$green: #90feb5;
+$action-color: $green;
+
+* {
+  box-sizing: border-box;
+}
+
+div{
+  display: block;
+  height: 100%;
+  animation: hue-rotate 10s linear infinite;
+}
+
+.button {
+  -webkit-font-smoothing: antialiased;
+  background-color: $dark-blue;
+  border: none;
+  color: #fff;
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 100;
+  text-decoration: none;
+  user-select: none;
+  letter-spacing: 1px;
+  color: white;
+  padding: 20px 40px;
+  text-transform: uppercase;
+  transition: all 0.1s ease-out;
+
+  &:hover {
+    background-color: $action-color;
+    color: #fff;
+  }
+  
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &--bubble {
+    position: relative;
+    z-index: 2;
+    color: white;
+    background: none;
+
+    &:hover {
+      background: none;
+    }
+
+    &:hover + .button--bubble__effect-container .circle {
+      background: darken($action-color, 15%);
+    }
+
+    &:hover + .button--bubble__effect-container .button {
+      background: darken($action-color, 15%);
+    }
+
+    &:active + .button--bubble__effect-container {
+      transform: scale(0.95);
+    }
+
+    &__container {
+      position: relative;
+      display: inline-block;
+
+      .effect-button {
+        position: absolute;
+        width: 50%;
+        height: 25%;
+        top: 50%;
+        left: 25%;
+        z-index: 1;
+        transform: translateY(-50%);
+        background: $dark-blue;
+        transition: background 0.1s ease-out;
+      }
+    }
+  }
+}
+
+.button--bubble__effect-container {
+  position: absolute;
+  display: block;
+  width: 200%;
+  height: 400%;
+  top: -150%;
+  left: -50%;
+  -webkit-filter: url("#goo");
+  filter: url("#goo");
+  transition: all 0.1s ease-out;
+  pointer-events: none;
+
+  .circle {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 15px;
+    background: $dark-blue;
+    transition: background 0.1s ease-out;
+
+    &.top-left {
+        top: 40%;
+        left: 27%;
+    }
+
+    &.bottom-right {
+        bottom: 40%;
+        right: 27%;
+    }
+  }
+}
+
+.goo {
+  position: absolute;
+  visibility: hidden;
+  width: 1px;
+  height: 1px;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.button--bubble__container {
+  top: 50%;
+  margin-top: -25px;
+}
+
+@keyframes hue-rotate {
+      from {
+        -webkit-filter: hue-rotate(0);
+        -moz-filter: hue-rotate(0);
+        -ms-filter: hue-rotate(0);
+        filter: hue-rotate(0);
+      }
+      to {
+        -webkit-filter: hue-rotate(360deg);
+        -moz-filter: hue-rotate(360deg);
+        -ms-filter: hue-rotate(360deg);
+        filter: hue-rotate(360deg);
+      }
+}
+Js:
+$('.button--bubble').each(function() {
+  var $circlesTopLeft = $(this).parent().find('.circle.top-left');
+  var $circlesBottomRight = $(this).parent().find('.circle.bottom-right');
+
+  var tl = new TimelineLite();
+  var tl2 = new TimelineLite();
+
+  var btTl = new TimelineLite({ paused: true });
+
+  tl.to($circlesTopLeft, 1.2, { x: -25, y: -25, scaleY: 2, ease: SlowMo.ease.config(0.1, 0.7, false) });
+  tl.to($circlesTopLeft.eq(0), 0.1, { scale: 0.2, x: '+=6', y: '-=2' });
+  tl.to($circlesTopLeft.eq(1), 0.1, { scaleX: 1, scaleY: 0.8, x: '-=10', y: '-=7' }, '-=0.1');
+  tl.to($circlesTopLeft.eq(2), 0.1, { scale: 0.2, x: '-=15', y: '+=6' }, '-=0.1');
+  tl.to($circlesTopLeft.eq(0), 1, { scale: 0, x: '-=5', y: '-=15', opacity: 0 });
+  tl.to($circlesTopLeft.eq(1), 1, { scaleX: 0.4, scaleY: 0.4, x: '-=10', y: '-=10', opacity: 0 }, '-=1');
+  tl.to($circlesTopLeft.eq(2), 1, { scale: 0, x: '-=15', y: '+=5', opacity: 0 }, '-=1');
+
+  var tlBt1 = new TimelineLite();
+  var tlBt2 = new TimelineLite();
+  
+  tlBt1.set($circlesTopLeft, { x: 0, y: 0, rotation: -45 });
+  tlBt1.add(tl);
+
+  tl2.set($circlesBottomRight, { x: 0, y: 0 });
+  tl2.to($circlesBottomRight, 1.1, { x: 30, y: 30, ease: SlowMo.ease.config(0.1, 0.7, false) });
+  tl2.to($circlesBottomRight.eq(0), 0.1, { scale: 0.2, x: '-=6', y: '+=3' });
+  tl2.to($circlesBottomRight.eq(1), 0.1, { scale: 0.8, x: '+=7', y: '+=3' }, '-=0.1');
+  tl2.to($circlesBottomRight.eq(2), 0.1, { scale: 0.2, x: '+=15', y: '-=6' }, '-=0.2');
+  tl2.to($circlesBottomRight.eq(0), 1, { scale: 0, x: '+=5', y: '+=15', opacity: 0 });
+  tl2.to($circlesBottomRight.eq(1), 1, { scale: 0.4, x: '+=7', y: '+=7', opacity: 0 }, '-=1');
+  tl2.to($circlesBottomRight.eq(2), 1, { scale: 0, x: '+=15', y: '-=5', opacity: 0 }, '-=1');
+  
+  tlBt2.set($circlesBottomRight, { x: 0, y: 0, rotation: 45 });
+  tlBt2.add(tl2);
+
+  btTl.add(tlBt1);
+  btTl.to($(this).parent().find('.button.effect-button'), 0.8, { scaleY: 1.1 }, 0.1);
+  btTl.add(tlBt2, 0.2);
+  btTl.to($(this).parent().find('.button.effect-button'), 1.8, { scale: 1, ease: Elastic.easeOut.config(1.2, 0.4) }, 1.2);
+
+  btTl.timeScale(2.6);
+
+  $(this).on('mouseover', function() {
+    btTl.restart();
+  });
+});
+
+27. Submit animation
+Html:
+<div class="container">
+  <button id="button"></button>
+</div>
+
+Scss:
+$green: #1ECD97;
+$gray: #bbbbbb;
+* {
+  font-family: 'Roboto', sans-serif;
+}
+.container {
+  position: absolute;
+  top:50%;
+  left:50%;
+  margin-left: -65px;
+  margin-top: -20px;
+  width: 130px;
+  height: 40px;
+  text-align: center;
+}
+button {
+  outline:none;
+  height: 40px;
+  text-align: center;
+  width: 130px;
+  border-radius:40px;
+  background: #fff;
+  border: 2px solid $green;
+  color:$green;
+  letter-spacing:1px;
+  text-shadow:0;
+  font:{
+    size:12px;
+    weight:bold;
+  }
+  cursor: pointer;
+  transition: all 0.25s ease;
+  &:hover {
+    color:white;
+    background: $green;
+  }
+  &:active {
+    //letter-spacing: 2px;
+    letter-spacing: 2px ;
+  }
+  &:after {
+    content:"SUBMIT";
+  }
+}
+.onclic {
+  width: 40px;
+  border-color:$gray;
+  border-width:3px;
+  font-size:0;
+  border-left-color:$green;
+  animation: rotating 2s 0.25s linear infinite;
+
+  &:after {
+    content:"";
+  }
+  &:hover {
+    color:$green;
+    background: white;
+  }
+}
+.validate {
+  font-size:13px;
+  color: white;
+  background: $green;
+  &:after {
+    font-family:'FontAwesome';
+    content:"\f00c";
+  }
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+Js:
+$(function() {
+  $( "#button" ).click(function() {
+    $( "#button" ).addClass( "onclic", 250, validate);
+  });
+
+  function validate() {
+    setTimeout(function() {
+      $( "#button" ).removeClass( "onclic" );
+      $( "#button" ).addClass( "validate", 450, callback );
+    }, 2250 );
+  }
+    function callback() {
+      setTimeout(function() {
+        $( "#button" ).removeClass( "validate" );
+      }, 1250 );
+    }
+  });
+
+28. FlipSide
+Html:
+<div class="btn">
+  <div class="btn-back">
+    <p>Are you sure you want to do that?</p>
+    <button class="yes">Yes</button>
+    <button class="no">No</button>
+  </div>
+  <div class="btn-front">Delete</div>
+</div>
+
+<p class="description">Try clicking different sides of the button – <a href="http://lab.hakim.se/" target="_blank">lab.hakim.se</a></p>
+
+Scss:
+$transition-duration: 0.8s;
+$transition-easing: cubic-bezier(0.230, 1.000, 0.320, 1.000);
+$bounce-easing: cubic-bezier(0.175, 0.885, 0.320, 1.275);
+$closed-width: 200px;
+$closed-height: 80px;
+$opened-width: 400px;
+$opened-height: 160px;
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  user-select: none;
+}
+
+body {
+  display: flex;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 18px;
+  perspective: 1000px;
+  background-color: #f5f5f5;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.description {
+  margin-top: 50px;
+  text-align: center;
+  color: #999;
+  transition: opacity 0.3s ease;
+}
+
+.description a {
+  color: #4A9DF6;
+  text-decoration: none;
+}
+
+.btn.is-open ~ .description {
+  opacity: 0;
+}
+
+.btn {
+  display: block;
+  position: relative;
+  width: $closed-width;
+  height: $closed-height;
+  transition: width $transition-duration $transition-easing,
+              height $transition-duration $transition-easing,
+              transform $transition-duration $bounce-easing;
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+  text-align: center;
+}
+
+.btn-front {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  line-height: $closed-height;
+  background-color: #F44336;
+  color: #fff;
+  cursor: pointer;
+  backface-visibility: hidden;
+  -webkit-tap-highlight-color: rgba( 0, 0, 0, 0 );
+  transition: background 0.15s ease,
+              line-height $transition-duration $transition-easing;
+}
+.btn-front:hover {
+  background-color: lighten(#F44336, 10%);
+}
+.btn.is-open .btn-front {
+  pointer-events: none;
+  line-height: $opened-height;
+}
+
+.btn-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #eee;
+  color: #222;
+  transform: translateZ(-2px) rotateX(180deg);
+  overflow: hidden;
+  transition: box-shadow $transition-duration ease;
+}
+.btn-back p {
+  margin-top: 27px;
+  margin-bottom: 25px;
+}
+.btn-back button {
+  padding: 12px 20px;
+  width: 30%;
+  margin: 0 5px;
+  background-color: transparent;
+  border: 0;
+  border-radius: 2px;
+  font-size: 1em;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: rgba( 0, 0, 0, 0 );
+  transition: background 0.15s ease;
+  
+  &:focus {
+    outline: 0;
+  }
+  
+  &.yes {
+    background-color: #2196F3;
+    color: #fff;
+    
+    &:hover {
+      background-color: lighten(#2196F3, 10%);
+    }
+  }
+  
+  &.no {
+    color: #2196F3;
+    
+    &:hover {
+      background-color: #ddd;
+    }
+  }
+}
+
+.btn.is-open .btn-back {
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+
+.btn[data-direction="left"] .btn-back,
+.btn[data-direction="right"] .btn-back {
+  transform: translateZ(-2px) rotateY(180deg);
+}
+
+.btn.is-open {
+  width: $opened-width;
+  height: $opened-height;
+}
+
+.btn[data-direction="top"].is-open {
+  transform: rotateX(180deg);
+}
+
+.btn[data-direction="right"].is-open {
+  transform: rotateY(180deg);
+}
+
+.btn[data-direction="bottom"].is-open {
+  transform: rotateX(-180deg);
+}
+
+.btn[data-direction="left"].is-open {
+  transform: rotateY(-180deg);
+}
+
+Js:
+var btn = document.querySelector( '.btn' );
+
+var btnFront = btn.querySelector( '.btn-front' ),
+    btnYes = btn.querySelector( '.btn-back .yes' ),
+    btnNo = btn.querySelector( '.btn-back .no' );
+
+btnFront.addEventListener( 'click', function( event ) {
+  var mx = event.clientX - btn.offsetLeft,
+      my = event.clientY - btn.offsetTop;
+
+  var w = btn.offsetWidth,
+      h = btn.offsetHeight;
+  
+  var directions = [
+    { id: 'top', x: w/2, y: 0 },
+    { id: 'right', x: w, y: h/2 },
+    { id: 'bottom', x: w/2, y: h },
+    { id: 'left', x: 0, y: h/2 }
+  ];
+  
+  directions.sort( function( a, b ) {
+    return distance( mx, my, a.x, a.y ) - distance( mx, my, b.x, b.y );
+  } );
+  
+  btn.setAttribute( 'data-direction', directions.shift().id );
+  btn.classList.add( 'is-open' );
+
+} );
+
+btnYes.addEventListener( 'click', function( event ) { 
+  btn.classList.remove( 'is-open' );
+} );
+
+btnNo.addEventListener( 'click', function( event ) {
+  btn.classList.remove( 'is-open' );
+} );
+
+function distance( x1, y1, x2, y2 ) {
+  var dx = x1-x2;
+  var dy = y1-y2;
+  return Math.sqrt( dx*dx + dy*dy );
+}
+
