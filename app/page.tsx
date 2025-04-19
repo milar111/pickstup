@@ -1,5 +1,84 @@
 import Link from 'next/link';
 
+// Predefined positions for particles to avoid hydration errors
+const particlePositions = [
+  // 3px particles (20)
+  { left: '49.59%', top: '-28.09%', delay: '-18.69s' },
+  { left: '110.10%', top: '-37.42%', delay: '-3.65s' },
+  { left: '87.74%', top: '-38.12%', delay: '-5.46s' },
+  { left: '31.12%', top: '-33.34%', delay: '-11.38s' },
+  { left: '190.84%', top: '-35.84%', delay: '-17.02s' },
+  { left: '100.37%', top: '-3.25%', delay: '-8.36s' },
+  { left: '178.96%', top: '-47.32%', delay: '-11.53s' },
+  { left: '2.68%', top: '-18.33%', delay: '-29.20s' },
+  { left: '103.82%', top: '-14.70%', delay: '-24.29s' },
+  { left: '185.44%', top: '-35.88%', delay: '-24.05s' },
+  { left: '143.82%', top: '-23.23%', delay: '-8.81s' },
+  { left: '184.08%', top: '-15.76%', delay: '-27.81s' },
+  { left: '16.37%', top: '-29.55%', delay: '-26.89s' },
+  { left: '158.19%', top: '-28.28%', delay: '-25.00s' },
+  { left: '164.75%', top: '-46.90%', delay: '-9.08s' },
+  { left: '87.61%', top: '-47.81%', delay: '-18.63s' },
+  { left: '120.43%', top: '-16.20%', delay: '-5.68s' },
+  { left: '176.62%', top: '-42.16%', delay: '-19.00s' },
+  { left: '103.73%', top: '-18.58%', delay: '-29.79s' },
+  { left: '143.69%', top: '-25.17%', delay: '-9.83s' },
+  
+  // 2px particles (30)
+  { left: '154.48%', top: '-8.90%', delay: '-24.97s' },
+  { left: '179.67%', top: '-6.94%', delay: '-17.97s' },
+  { left: '79.35%', top: '-13.57%', delay: '-20.63s' },
+  { left: '48.26%', top: '-45.81%', delay: '-22.61s' },
+  { left: '34.76%', top: '-45.07%', delay: '-27.92s' },
+  { left: '163.25%', top: '-33.86%', delay: '-25.66s' },
+  { left: '128.36%', top: '-9.75%', delay: '-29.69s' },
+  { left: '177.68%', top: '-27.81%', delay: '-19.73s' },
+  { left: '145.95%', top: '-1.18%', delay: '-18.61s' },
+  { left: '23.16%', top: '-23.49%', delay: '-13.33s' },
+  { left: '199.61%', top: '-30.92%', delay: '-11.49s' },
+  { left: '91.82%', top: '-37.93%', delay: '-27.75s' },
+  { left: '33.50%', top: '-7.36%', delay: '-0.43s' },
+  { left: '125.41%', top: '-27.70%', delay: '-3.67s' },
+  { left: '151.65%', top: '-21.20%', delay: '-23.27s' },
+  { left: '69.40%', top: '-21.12%', delay: '-12.47s' },
+  { left: '152.50%', top: '-21.60%', delay: '-2.20s' },
+  { left: '134.44%', top: '-43.48%', delay: '-11.24s' },
+  { left: '23.94%', top: '-24.66%', delay: '-27.71s' },
+  { left: '128.61%', top: '-46.12%', delay: '-12.11s' },
+  { left: '140.29%', top: '-46.01%', delay: '-12.28s' },
+  { left: '80.81%', top: '-17.25%', delay: '-1.49s' },
+  { left: '36.65%', top: '-40.31%', delay: '-9.80s' },
+  { left: '103.42%', top: '-1.20%', delay: '-22.75s' },
+  { left: '57.52%', top: '-16.22%', delay: '-17.57s' },
+  { left: '94.97%', top: '-34.97%', delay: '-16.35s' },
+  { left: '89.63%', top: '-0.64%', delay: '-16.12s' },
+  { left: '156.50%', top: '-42.36%', delay: '-23.83s' },
+  { left: '98.12%', top: '-26.44%', delay: '-4.89s' },
+  { left: '192.69%', top: '-6.19%', delay: '-27.60s' },
+  
+  // 1px particles (extra 20)
+  { left: '124.25%', top: '-12.66%', delay: '-15.38s' },
+  { left: '72.19%', top: '-42.56%', delay: '-7.76s' },
+  { left: '11.48%', top: '-35.31%', delay: '-19.42s' },
+  { left: '62.35%', top: '-9.03%', delay: '-28.91s' },
+  { left: '138.76%', top: '-31.95%', delay: '-5.04s' },
+  { left: '30.22%', top: '-17.77%', delay: '-14.71s' },
+  { left: '82.64%', top: '-5.86%', delay: '-22.18s' },
+  { left: '188.27%', top: '-26.38%', delay: '-11.15s' },
+  { left: '142.91%', top: '-40.74%', delay: '-2.89s' },
+  { left: '51.37%', top: '-2.48%', delay: '-16.52s' },
+  { left: '131.73%', top: '-19.83%', delay: '-8.24s' },
+  { left: '8.94%', top: '-44.12%', delay: '-25.59s' },
+  { left: '97.28%', top: '-8.36%', delay: '-13.21s' },
+  { left: '75.51%', top: '-37.17%', delay: '-30.07s' },
+  { left: '168.34%', top: '-23.52%', delay: '-7.32s' },
+  { left: '22.81%', top: '-14.17%', delay: '-18.95s' },
+  { left: '113.56%', top: '-32.04%', delay: '-26.43s' },
+  { left: '45.19%', top: '-6.28%', delay: '-9.76s' },
+  { left: '157.42%', top: '-39.65%', delay: '-21.63s' },
+  { left: '67.85%', top: '-29.14%', delay: '-3.17s' }
+];
+
 export default function Home() {
   return (
     <div className="min-h-screen relative overflow-hidden bg-white dark:bg-black transition-colors duration-300">
@@ -8,48 +87,48 @@ export default function Home() {
       <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.25] dark:opacity-30 [filter:invert(0.2)] dark:[filter:invert(0.8)]"></div>
 
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
+        {particlePositions.slice(0, 20).map((pos, i) => (
           <div
             key={i}
             className="absolute rounded-full animate-wind text-gray-800 dark:text-white"
             style={{
-              left: `${Math.random() * 200}%`,
-              top: `${Math.random() * -50}%`,
+              left: pos.left,
+              top: pos.top,
               width: '3px',
               height: '3px',
               background: 'currentColor',
               opacity: 0.6,
-              animationDelay: `${Math.random() * -30}s`,
+              animationDelay: pos.delay,
             }}
           ></div>
         ))}
-        {[...Array(30)].map((_, i) => (
+        {particlePositions.slice(20, 50).map((pos, i) => (
           <div
             key={i + 20}
             className="absolute rounded-full animate-wind text-gray-800 dark:text-white"
             style={{
-              left: `${Math.random() * 200}%`,
-              top: `${Math.random() * -50}%`,
+              left: pos.left,
+              top: pos.top,
               width: '2px',
               height: '2px',
               background: 'currentColor',
               opacity: 0.5,
-              animationDelay: `${Math.random() * -30}s`,
+              animationDelay: pos.delay,
             }}
           ></div>
         ))}
-        {[...Array(50)].map((_, i) => (
+        {particlePositions.slice(50, 70).map((pos, i) => (
           <div
             key={i + 50}
             className="absolute rounded-full animate-wind text-gray-800 dark:text-white"
             style={{
-              left: `${Math.random() * 200}%`,
-              top: `${Math.random() * -50}%`,
+              left: pos.left,
+              top: pos.top,
               width: '1px',
               height: '1px',
               background: 'currentColor',
               opacity: 0.4,
-              animationDelay: `${Math.random() * -30}s`,
+              animationDelay: pos.delay,
             }}
           ></div>
         ))}
@@ -72,22 +151,16 @@ export default function Home() {
             <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 max-w-xl mx-auto lg:mx-0">
               A collection of beautiful, accessible, and customizable components built with modern web standards.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="space-x-4">
               <Link
                 href="/ui-components"
-                className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-500 dark:to-purple-500 text-white rounded-full overflow-hidden transition-all duration-300 text-center"
+                className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-500 dark:to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <span className="relative flex items-center justify-center">
-                  Browse Components
-                  <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </span>
+                Browse Components
               </Link>
               <Link
                 href="/docs"
-                className="group px-6 sm:px-8 py-3 sm:py-4 bg-gray-100 dark:bg-white/10 backdrop-blur-sm text-gray-900 dark:text-white rounded-full hover:bg-gray-200 dark:hover:bg-white/20 transition-all duration-300 text-center"
+                className="inline-flex items-center justify-center px-5 py-3 border border-gray-300 dark:border-gray-700 text-base font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700"
               >
                 Documentation
               </Link>

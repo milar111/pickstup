@@ -1,0 +1,82 @@
+.validation-input-container {
+  position: relative;
+  width: 100%;
+}
+
+.validation-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.validation-input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+  width: 100%;
+  padding-right: 2.5rem;
+}
+
+.validation-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+.validation-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: #f3f4f6;
+}
+
+.validation-input.success {
+  border-color: #10b981;
+}
+
+.validation-input.success:focus {
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.1);
+}
+
+.validation-input.error {
+  border-color: #ef4444;
+}
+
+.validation-input.error:focus {
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.1);
+}
+
+.validation-input.warning {
+  border-color: #f59e0b;
+}
+
+.validation-input.warning:focus {
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.1);
+}
+
+.validation-icon {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+}
+
+.validation-message {
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.validation-message.success {
+  color: #10b981;
+}
+
+.validation-message.error {
+  color: #ef4444;
+}
+
+.validation-message.warning {
+  color: #f59e0b;
+} 

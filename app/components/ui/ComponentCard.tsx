@@ -50,14 +50,23 @@ export function ComponentCard({ component }: ComponentCardProps) {
     loadPreview();
   }, [component]);
   
+  const handlePreviewClick = (e: React.MouseEvent) => {
+    // Prevent the link from navigating when clicking on the preview area
+    e.preventDefault();
+    e.stopPropagation();
+  };
+  
+  const href = `/ui-components/group/${component.groupTitle.toLowerCase().replace(/\s+/g, '-')}/${component.name.toLowerCase().replace(/\s+/g, '-')}`;
+  
   return (
-    <Link
-      href={`/ui-components/group/${component.groupTitle.toLowerCase().replace(/\s+/g, '-')}/${component.name.toLowerCase().replace(/\s+/g, '-')}`}
-      className="group relative p-6 bg-gray-50 dark:bg-white/5 rounded-xl border-2 border-gray-200 dark:border-white/10 hover:border-blue-200 dark:hover:border-white/20 transition-all duration-300"
-    >
+    <div className="group relative p-6 bg-gray-50 dark:bg-white/5 rounded-xl border-2 border-gray-200 dark:border-white/10 hover:border-blue-200 dark:hover:border-white/20 transition-all duration-300">
       <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 dark:from-blue-500/10 dark:to-purple-500/10 rounded-xl opacity-100 dark:opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       <div className="relative">
-        <div className="component-preview h-36 mb-4 flex items-center justify-center bg-white dark:bg-gray-900/50 rounded-lg border border-gray-200 dark:border-gray-800 p-4 overflow-hidden">
+        {/* Preview section - not clickable for navigation */}
+        <div 
+          className="component-preview h-36 mb-4 flex items-center justify-center bg-white dark:bg-gray-900/50 rounded-lg border border-gray-200 dark:border-gray-800 p-4 overflow-hidden"
+          onClick={handlePreviewClick}
+        >
           {isLoading ? (
             <div className="animate-pulse flex items-center justify-center w-full h-full">
               <div className="w-3/4 h-12 bg-gray-200 dark:bg-gray-700 rounded"></div>
@@ -72,22 +81,25 @@ export function ComponentCard({ component }: ComponentCardProps) {
           )}
         </div>
         
-        <div className="flex items-center justify-between">
-          <div>
-            <h3 className="text-lg font-medium text-gray-900 dark:text-white">{component.name}</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-1">{component.description}</p>
-            
-            <div className="mt-2 flex items-center text-xs text-gray-500 dark:text-gray-400">
-              <IconComponent className="h-3 w-3 mr-1" />
-              <span>{component.groupTitle}</span>
+        {/* Card info section - clickable for navigation */}
+        <Link href={href}>
+          <div className="flex items-center justify-between cursor-pointer">
+            <div>
+              <h3 className="text-lg font-medium text-gray-900 dark:text-white">{component.name}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-1">{component.description}</p>
+              
+              <div className="mt-2 flex items-center text-xs text-gray-500 dark:text-gray-400">
+                <IconComponent className="h-3 w-3 mr-1" />
+                <span>{component.groupTitle}</span>
+              </div>
+            </div>
+            <div className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 group-hover:text-blue-500 dark:group-hover:text-blue-400 group-hover:bg-blue-50 dark:group-hover:bg-gray-700 transition-colors">
+              <ChevronRight className="h-5 w-5" />
             </div>
           </div>
-          <div className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 group-hover:text-blue-500 dark:group-hover:text-blue-400 group-hover:bg-blue-50 dark:group-hover:bg-gray-700 transition-colors">
-            <ChevronRight className="h-5 w-5" />
-          </div>
-        </div>
+        </Link>
       </div>
-    </Link>
+    </div>
   );
 }
 

@@ -28,7 +28,13 @@ export const componentGroups: ComponentGroup[] = [
       ],
       'Input': [
         { id: 'default', name: 'Default', description: 'Standard input field', codePath: 'components/ui/Input/default' },
-        { id: 'with-label', name: 'With Label', description: 'Input with a label', codePath: 'components/ui/Input/with-label' }
+        { id: 'with-label', name: 'With Label', description: 'Input with a label', codePath: 'components/ui/Input/with-label' },
+        { id: 'password', name: 'Password', description: 'Secure password input with visibility toggle', codePath: 'components/ui/Input/password' },
+        { id: 'search', name: 'Search', description: 'Search input with icon and clear button', codePath: 'components/ui/Input/search' },
+        { id: 'with-icon', name: 'With Icon', description: 'Input with custom icon', codePath: 'components/ui/Input/with-icon' },
+        { id: 'with-validation', name: 'With Validation', description: 'Input with validation state indicators', codePath: 'components/ui/Input/with-validation' },
+        { id: 'underlined', name: 'Underlined', description: 'Minimal input with only bottom border', codePath: 'components/ui/Input/underlined' },
+        { id: 'rounded', name: 'Rounded', description: 'Input with fully rounded corners', codePath: 'components/ui/Input/rounded' }
       ]
     }
   }
